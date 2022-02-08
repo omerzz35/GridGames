@@ -1,4 +1,13 @@
 package com.company;
 
-public class Piece {
+public abstract class Piece {
+    protected String name;
+    protected String color;
+    protected Location location;
+
+    public Location getLocation(){return location;}
+    public void setLocation(int x,int y){location.setX(x);location.setY(y);}
+    public String getColor(){return color;}
+    public abstract boolean isLegalMove(Location loc);
+    public IO display();
 }
