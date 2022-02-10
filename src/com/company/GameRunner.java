@@ -2,6 +2,7 @@ package com.company;
 
 public class GameRunner {
     Boardgame bg;
+    IO io = new ConsoleIO();
 //    public GameRunner()
 //    {
 //        this.bg = new bg(...);

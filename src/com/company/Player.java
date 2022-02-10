@@ -14,7 +14,7 @@ public class Player {
     {
         while(true)
         {
-            Locations loc = howToMove(); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square
+            Locations loc = howToMove(this); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
             int len = pieces.length;
             Piece piece = null;
             boolean flag = true;
