@@ -17,9 +17,10 @@ public class Player {
         while(true)
         {
             // get pieces by color
-            Piece[] pieces = ....
+            //Piece[] pieces = ....
             String input = howToMove(); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
-            rules(input,pieces,move); // set in move vals
+            // in how to move check simple things, like location in board (0 <=x,y< board.size)
+            rules(input,state,this.color,move); // set in move vals
 
 //            int len = pieces.length;
 //            Piece piece = null;

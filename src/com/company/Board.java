@@ -1,5 +1,8 @@
 package com.company;
 
 public class Board {
-    Piece[] board; // null = empty /
+    private Piece[] board; // null = empty /
+    public Board(Piece[] board){this.board = board;}
+    public Piece[] getState(){return this.board;}
+
 }

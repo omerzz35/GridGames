@@ -5,9 +5,9 @@ public abstract class Piece {
     protected String color;
 //    protected Location location;
 
-    public Location getLocation(){return location;}
-    public void setLocation(int x,int y){location.setX(x);location.setY(y);}
+//    public Location getLocation(){return location;}
+//    public void setLocation(int x,int y){location.setX(x);location.setY(y);}
     public String getColor(){return color;}
-    public abstract boolean isLegalMove(Location loc);
+    public abstract boolean isLegalMove(Locations loc, Board state);
     public IO display(); // should not be here - the gui should get id of piece + color and do it himself
 }
