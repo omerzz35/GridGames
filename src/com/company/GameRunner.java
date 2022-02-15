@@ -12,15 +12,16 @@ public class GameRunner {
     {
         // DB TOP 5 and  LIST OF GAMES (NAMES) and PVP (ONLINE OR LOCAL) PVE
         // IO NAME OF GAME
-        this.bg = new bg(...); //
+        this.bg = new bg(io,nameOfGame,...); //
     }
 
     public void run()
     {
         bg.initialize(); //*
-        while(!isGameOver){
-            p = getNextPlayer();
-            p.makeMove();
+        while(!bg.isGameOver){
+            Player p = bg.getNextPlayer();
+            // move io
+            p.makeMove(bg.getState());
         }
     }
 
