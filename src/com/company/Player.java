@@ -4,8 +4,9 @@ import javax.print.attribute.standard.PrinterMakeAndModel;
 import java.util.function.Function;
 
 public class Player {
-    private Function howToMove;
-    private Function rules;
+    private Rules gameRules;
+//    private Function howToMove;
+//    private Function rules;
     String color;
 //    private Piece[] pieces;
 
@@ -18,9 +19,11 @@ public class Player {
         {
             // get pieces by color
             //Piece[] pieces = ....
-            String input = howToMove(); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
+            String input = gameRules.howToMove(); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
             // in how to move check simple things, like location in board (0 <=x,y< board.size)
-            rules(input,state,this.color,move); // set in move vals
+            if (!gameRules.rules(input,state,this.color,move)) {// set in move vals
+                continue;
+            }
 
 //            int len = pieces.length;
 //            Piece piece = null;

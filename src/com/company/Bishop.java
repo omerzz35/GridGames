@@ -22,7 +22,7 @@ public class Bishop extends Piece{
         {
             i += x;
             j += y;
-            if(state[i][j] != null){return false;}
+            if(state.getState()[i][j] != null){return false;}
         }
         //todo:(after rules in player or isGameOver) check if after moving the bishop it is not checkmate
         return true;
