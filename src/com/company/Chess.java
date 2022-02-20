@@ -36,7 +36,7 @@ public class Chess extends AbstractGame{
             {
                 this.io.write("select source square");
                 src = io.read().toLowerCase();
-                if (src == "castling") {return src;}
+                if (src == "castling") {return src;} // todo: long or short
                 if (!(src.length() == 2 && ((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') || (src.charAt(0) >= 'A' && src.charAt(0) <= 'H')) && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
                     this.io.write("Illegal input - try again");
                 }
