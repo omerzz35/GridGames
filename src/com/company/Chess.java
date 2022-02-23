@@ -14,14 +14,15 @@ public class Chess extends AbstractGame{
 
     public void initialize()
     {
-        Piece board[][] = {{new Rook("BLACK"),new Knight("BLACK"),new Bishop("BLACK"),new Queen("BLACK"),new King("BLACK"),new Bishop("BLACK"),new Knight("BLACK"),new Rook("BLACK")},
-                {new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK"),new Pawn("BLACK")},
+        // todo: need to return arrs of pieces (for each player)
+        Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
+                {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE"),new Pawn("WHITE")},
-                {new Rook("WHITE"),new Knight("WHITE"),new Bishop("WHITE"),new Queen("WHITE"),new King("WHITE"),new Bishop("WHITE"),new Knight("WHITE"),new Rook("WHITE")}};
+                {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
+                {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
     }
 //    public Player getNextPlayer(){}
     public boolean isGameOver(){}
@@ -31,7 +32,7 @@ public class Chess extends AbstractGame{
         boolean flag = false;
         while (true)
         {
-            this.io.write("select source square and destination square (press x to start over / write \"castling\" to do castling):");
+            this.io.write("select source square and destination square (press x to start over / write \"long castling\" / \" short castling\"  to do castling):");
             while (true)
             {
                 this.io.write("select source square");

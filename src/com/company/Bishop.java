@@ -2,6 +2,11 @@ package com.company;
 
 public class Bishop extends Piece{
 
+    public Bishop(String color) {
+        this.color = color;
+        this.name = "Bishop";
+    }
+
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();

@@ -2,6 +2,11 @@ package com.company;
 
 public class Rook extends Piece{
 
+    public Rook(String color) {
+        this.color = color;
+        this.name = "Rook";
+    }
+
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();

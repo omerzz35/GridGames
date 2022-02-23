@@ -2,6 +2,12 @@ package com.company;
 
 public class King extends Piece{
     private boolean isMoved = false; //htzraha
+
+    public King(String color) {
+        this.color = color;
+        this.name = "King";
+    }
+
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();

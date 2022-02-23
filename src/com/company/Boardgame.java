@@ -1,15 +1,16 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Boardgame {
     private AbstractGame game;
-    private Map nameToGame = new HashMap(); // make hashmap from name to obj from file of possible games
+//    private Map<String,AbstractGame> nameToGame = new HashMap(); // make hashmap from name to obj from file of possible games
 
-    public Boardgame(IO io,String nameOfGame,...)
+    public Boardgame(IO io,String nameOfGame)//,...)
     {
-        this.game = // from nameToGame get game and pass IO and ...
+//        nameToGame.put("chess" , new Chess(io));
+//        this.game = nameToGame.get(nameOfGame);// from nameToGame get game and pass IO and ...
+// todo: check if in declaration it is initialize the obj
+        GameFactory gf = new GameFactory();
+        this.game = gf.getGame(nameOfGame ,io);
     }
 
 //    public enum GameStatus {

@@ -4,6 +4,7 @@ public class Knight extends Piece {
 
     public Knight(String color) {
         this.color = color;
+        this.name = "Knight";
     }
 
     public boolean isLegalMove(Locations loc, Board state) {
