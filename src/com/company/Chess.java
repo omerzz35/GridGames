@@ -25,7 +25,27 @@ public class Chess extends AbstractGame{
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
     }
 //    public Player getNextPlayer(){}
-    public boolean isGameOver(){}
+    public boolean isGameOver(Board board){
+        Piece[][] kings = new Piece[2][1];
+        state = board.getState();
+        for(int i=0 ; i<8 ; i++){
+            for(int j=0 ; j<8 ; j++){
+                if(state[i][j] instanceof King){
+                    index = state[i][j].getColor().equals("WHITE") ? 0 : 1;
+                    kings[index][0] = state[i][j];
+                }
+            }
+        }
+        for(int i=0 ; i<8 ; i++){
+            for(int j=0 ; j<8 ; j++) {
+                if(state[i][j] != null){
+                    if (state[i][j].getColor().equals("WHITE")){
+                        state[i][j].
+                    }
+                }
+            }
+        }
+    }
 
     public String howToMove() {//how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
         String src, dst;
