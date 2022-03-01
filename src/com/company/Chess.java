@@ -37,8 +37,9 @@ public class Chess extends AbstractGame{
         List<Location> pieceLocations = new ArrayList<Location>();
 
         // iterating over the board to get all pieces locations
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        int size = state[0].length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 if (state[i][j] instanceof King) {
                     // index = 0 if king's color is white, 1 if king's color is black
                     int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
@@ -62,7 +63,7 @@ public class Chess extends AbstractGame{
                 for (int j = -1; j < 2; j++) {
                     int dstX = kingsLoc[idx].getX() + i;
                     int dstY = kingsLoc[idx].getY() + j;
-                    if (dstX > 0 && dstY > 0) {
+                    if (dstX > 0 && dstY > 0 && dstX < size && dstY < size) {
                         if (state[dstX][dstY] != null && state[dstX][dstY].getColor().equals(color)) {
                             continue;
                         }
