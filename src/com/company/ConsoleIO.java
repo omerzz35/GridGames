@@ -1,6 +1,7 @@
 package com.company;
 
 public class ConsoleIO extends IO{
+
     public String read(){
         return System.console().readLine();
     }
