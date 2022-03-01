@@ -19,7 +19,7 @@ public class Board implements Observable{
     @Override
     public void changeValue(Piece[][] board) {
         this.board = board;
-        notifyObservers();
+        this.notifyObservers();
     }
 
 }

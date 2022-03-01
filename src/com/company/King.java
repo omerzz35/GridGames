@@ -8,6 +8,11 @@ public class King extends Piece{
         this.name = "King";
     }
 
+    //todo: need to verify if the move is not check without calling isGameOver.
+    // Because this is a specific move of the king.
+    // In isGameOver we are verifying all potential move of the king. We do not want to call it from here to verify
+    // if the move is legal ...
+
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
