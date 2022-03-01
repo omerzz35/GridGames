@@ -1,11 +1,37 @@
 package com.company;
 
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class ConsoleGUI extends GUI{
     //white : ♔ king, ♕ queen, ♖ rook, ♗ bishop, ♘ knight and ♙ pawn
     //black : ♚ king, ♛ queen, ♜ rook, ♝ bishop, ♞ knight and ♟ pawn
     private Hashtable<String, String> piecesToIcon = new Hashtable<String, String>();;
+
+    private Move stringToMove(String string){
+        if (string.length() != 5) {return null;}
+        int[] coords = new int[5];
+
+        for (int i = 0; i < string.length(); i++) {
+            if (i == 0 || i == 3){
+                coords[i] = string.charAt(i) - 'A';
+            }
+            else{
+                coords[i] = string.charAt(i) - '0';
+            }
+        }
+
+        for (int i = 0; i < 5 ; i++){
+            if (i == 2){continue;}
+            if (coords[i] > board.length || coords[i] < 0){return null;}
+        }
+
+        Location origin = new Location(coords[0], coords[1]);
+        Location destination = new Location(coords[3], coords[4]);
+
+        return new Move(origin, destination);
+    }
+
     public ConsoleGUI() {
         piecesToIcon.put("WKing", "♔");
         piecesToIcon.put("WQueen", "♕");
@@ -20,7 +46,6 @@ public class ConsoleGUI extends GUI{
         piecesToIcon.put("BKnight", "♞");
         piecesToIcon.put("BPawn", "♟");
     }
-
 
     // todo: it is just for chess!!!! - need to make it generic (pass piecesToIcon?)
     //https://stackoverflow.com/questions/50895577/printing-chess-board-with-unicodes
@@ -53,5 +78,21 @@ public class ConsoleGUI extends GUI{
                 }
             }
         }
+    }
+
+    public Move getInput(String player){
+        Scanner input = new Scanner(System.in);
+        String string = String.format("Next Move for %s", player);
+        System.out.println(string);
+        System.out.println("Format of Input: Location of you piece [SPACE] Destination\nFor example \"A5 B5\"");
+        System.out.print("Your next move is: ");
+        String move = input.nextLine();
+
+        Move fromInput = this.stringToMove(move);
+        if (fromInput == null){
+            System.out.println("\nINCORRECT INPUT");
+            return null;
+        }
+        return fromInput;
     }
 }
