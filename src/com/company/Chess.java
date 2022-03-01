@@ -145,6 +145,7 @@ public class Chess extends AbstractGame{
         return src.concat(" ").concat(dst);
     }
     // in how to move check simple things, like location in board (0 <=x,y< board.size)
+
     public boolean rules(String input,Board state,String color,Move move) {// set in move vals
         if (input == "castling")
         {
