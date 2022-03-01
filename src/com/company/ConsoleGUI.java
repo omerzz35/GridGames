@@ -81,6 +81,7 @@ public class ConsoleGUI extends GUI{
     }
 
     public Move getInput(String player){
+        // In case the input is invalid, return null
         Scanner input = new Scanner(System.in);
         String string = String.format("Next Move for %s", player);
         System.out.println(string);
