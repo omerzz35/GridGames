@@ -1,10 +1,10 @@
 package com.company;
 
 public class GameRunner {
-    Boardgame bg;
-    IO io;
-    GUI gui;
-    DB db;
+    private Boardgame bg;
+    private IO io;
+    private GUI gui;
+    private DB db;
 //    public GameRunner()
 //    {
 //        this.bg = new bg(...);
@@ -24,19 +24,22 @@ public class GameRunner {
         io.write("list Of Games: \n" + db.getGames());
         String nameOfGame = io.read();
         // todo: check if game in list of games
-        this.bg = new Boardgame(io,nameOfGame); //
+        this.bg = new Boardgame(io,nameOfGame);
+        this.run();
     }
 
     public void run()
     {
-        bg.initialize(); //*
+        bg.initialize(gui);
         //decideFirstPlayer();
         while(!bg.isGameOver()){
             Player p = bg.getNextPlayer();
             p.makeMove(bg.getState());
         }
         io.write(bg.announceWinner()+" won!");
-        // todo: enter name to add one more win
+        io.write("enter your name: ");
+        String name = io.read();
+        db.addWin(name);
     }
 
 }

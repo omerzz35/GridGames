@@ -19,10 +19,11 @@ public class Boardgame {
         this.game = gf.getGame(nameOfGame ,io);
     }
 
-    public void initialize()
+    public void initialize(GUI gui)
     {
         BoardAndColors bac = this.game.initialize();
         this.board = bac.getBoard();
+        this.board.addObserver(gui);
         String colors[] = bac.getColors();
         this.numOfPlayers = colors.length;
         players = new Player[numOfPlayers];

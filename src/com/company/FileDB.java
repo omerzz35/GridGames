@@ -28,6 +28,7 @@ public class FileDB extends DB{
                 e.printStackTrace();
             }
         }
+        this.readDb();
     }
 
     // Static method to create instance of Singleton class

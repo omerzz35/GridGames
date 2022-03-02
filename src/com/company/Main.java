@@ -5,8 +5,7 @@ public class Main {
     public static void main(String[] args) {
         System.console().readLine();
         System.out.println("start");
-
-        GameRunner game = new GameRunner(new ConsoleIO(), new ConsoleGUI(), FileDB.getInstance());
+        GameRunner game = new GameRunner(new ConsoleIO(), new ConsoleGUI(), FileDB.getInstance()); // todo: check
         game.Start();
     }
 }
