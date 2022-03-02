@@ -3,8 +3,12 @@ package com.company;
 
 import java.util.List;
 
-public class DB {
+public abstract class DB {
 
-    public void readDb(){}
-    public void writeDb(){}
+    public abstract void addWin(String name){}
+    public abstract String getGames(){}
+    public abstract String getTopKPlayers(){}
+
+//    public void readDb(){}
+//    public void writeDb(){}
 }

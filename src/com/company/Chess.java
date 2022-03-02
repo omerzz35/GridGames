@@ -16,7 +16,6 @@ public class Chess extends AbstractGame{
 
     public void initialize()
     {
-        // todo: need to return arrs of pieces (for each player)
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},

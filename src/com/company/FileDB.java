@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileDB extends DB{
+public class FileDB extends DB implements {
     private static FileDB single_instance = null;
     private File dfReader = new File("db.txt");
     private List<String[]> BestPlayers;

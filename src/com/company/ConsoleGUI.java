@@ -32,7 +32,9 @@ public class ConsoleGUI extends GUI{
 //        return new Move(origin, destination);
 //    }
 
-    public ConsoleGUI() {
+    public ConsoleGUI(Hashtable<String, String> piecesToIcon) {
+        this.piecesToIcon = piecesToIcon;
+        //todo: put it when you create ConsoleGUI (file)
         piecesToIcon.put("WKing", "♔");
         piecesToIcon.put("WQueen", "♕");
         piecesToIcon.put("WRook", "♖");
