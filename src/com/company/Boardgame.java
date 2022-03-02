@@ -54,7 +54,7 @@ public class Boardgame {
 
     public boolean isGameOver()
     {
-        return this.game.isGameOver();
+        return this.game.isGameOver(board);
     }
 
     public Player getNextPlayer()
