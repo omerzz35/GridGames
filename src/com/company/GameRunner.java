@@ -5,6 +5,7 @@ public class GameRunner {
     private IO io;
     private GUI gui;
     private DB db;
+    private String nameOfGame;
 //    public GameRunner()
 //    {
 //        this.bg = new bg(...);
@@ -20,11 +21,11 @@ public class GameRunner {
     {
         // DB TOP 5 and  LIST OF GAMES (NAMES) and PVP (ONLINE OR LOCAL) PVE
         // IO NAME OF GAME
-        io.write("top 5 Players: \n" + db.getBestPlayers());
+        io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame));
         io.write("list Of Games: \n" + db.getGames());
-        String nameOfGame = io.read();
+        this.nameOfGame = io.read();
         // todo: check if game in list of games
-        this.bg = new Boardgame(io,nameOfGame);
+        this.bg = new Boardgame(io,this.nameOfGame);
         this.run();
     }
 
@@ -39,7 +40,7 @@ public class GameRunner {
         io.write(bg.announceWinner()+" won!");
         io.write("enter your name: ");
         String name = io.read();
-        db.addWin(name);
+        db.addWin(this.nameOfGame, name);
     }
 
 }

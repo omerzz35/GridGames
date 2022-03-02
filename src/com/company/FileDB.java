@@ -11,7 +11,7 @@ public class FileDB extends DB{
     private static FileDB single_instance = null;
     private File playersReader;
     private File gamesReader;
-    private Hashtable<String, Integer> BestPlayers = new Hashtable<String, Integer>();
+    private Hashtable<String, Hashtable<String, Integer>> BestPlayers = new Hashtable<String, Hashtable<String, Integer>>();
     private final List<String> games = new ArrayList<String>();
     private final String playerTxt = "best_players";
 
@@ -43,10 +43,17 @@ public class FileDB extends DB{
     public void readDb(){
         try {
             Scanner reader = new Scanner(this.playersReader);
+
             while (reader.hasNextLine()) {
+                String game = reader.nextLine();
+                Hashtable<String, Integer>map = new Hashtable<String, Integer>();
+                this.BestPlayers.put(game, map);
                 String data = reader.nextLine();
-                String[] tokens = data.split(" ");
-                this.BestPlayers.put(tokens[0], Integer.valueOf(tokens[1]));
+                while (!data.equals("=")) {
+                    String[] tokens = data.split(" ");
+                    this.BestPlayers.get(game).put(tokens[0], Integer.valueOf(tokens[1]));
+                    data = reader.nextLine();
+                }
             }
             reader.close();
         }
@@ -68,17 +75,19 @@ public class FileDB extends DB{
         }
     }
 
-    public Hashtable<String, Integer> getBestPlayers(){
-        return this.BestPlayers;
+    public Hashtable<String, Integer> getBestPlayers(String game){
+        return this.BestPlayers.get(game);
     }
 
-    public void addWin(String name){
+    public void addWin(String game, String name){
+        Hashtable<String, Integer> map = this.BestPlayers.get(game);
         if(this.BestPlayers.containsKey(name)){
-            this.BestPlayers.put(name, this.BestPlayers.get(name) + 1);
+            map.put(name, map.get(name) + 1);
         }
         else{
-            this.BestPlayers.put(name, 1);
+            map.put(name, 1);
         }
+        this.writeDb();
     }
 
     public void writeDb() {
