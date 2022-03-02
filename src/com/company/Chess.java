@@ -30,7 +30,7 @@ public class Chess extends AbstractGame{
         colors[1] = BLACK;
         return new BoardAndColors(new Board(board) ,colors);
     }
-//    public Player getNextPlayer(){}
+
     public boolean isGameOver(Board board) {
         Piece[] kings = new Piece[2];
         Location[] kingsLoc = new Location[2];

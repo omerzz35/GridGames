@@ -18,7 +18,7 @@ public class Board implements Observable{
 
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update(board, "Board");
+            observer.update(board);
         }
     }
 
