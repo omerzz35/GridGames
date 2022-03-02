@@ -1,14 +1,26 @@
 package com.company;
 
 
+import java.util.Hashtable;
 import java.util.List;
 
-public abstract class DB {
+public class DB {
 
-    public abstract void addWin(String name){}
-    public abstract String getGames(){}
-    public abstract String getTopKPlayers(){}
+    public void addWin(String name) {
+    }
 
-//    public void readDb(){}
-//    public void writeDb(){}
+    public String getGames() {
+        return null;
+    }
+
+    public Hashtable<String, Integer> getBestPlayers() {
+        return null;
+    }
+
+    public static DB getInstance() {
+        return null;
+    }
+
+    public void writeDb() {
+    }
 }
