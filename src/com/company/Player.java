@@ -7,10 +7,12 @@ public abstract class Player {
     protected Rules gameRules;
 //    private Function howToMove;
 //    private Function rules;
-    String color;
+    protected String color;
 //    private Piece[] pieces;
 
     public  Player(Rules gameRules, String color){this.gameRules = gameRules;this.color = color;}
+
+    public String getColor(){return this.color;}
 
     public abstract void makeMove(Board state);// game state as an arg (in makeMove get the color / pass pieces)
 //    public void makeMove(Board state)// game state as an arg (in makeMove get the color / pass pieces)

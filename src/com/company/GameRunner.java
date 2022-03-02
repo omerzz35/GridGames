@@ -18,8 +18,10 @@ public class GameRunner {
     {
         // DB TOP 5 and  LIST OF GAMES (NAMES) and PVP (ONLINE OR LOCAL) PVE
         // IO NAME OF GAME
-        db.getGames();
-        String
+        io.write("top 5 Players: \n" + db.getTopKPlayers());
+        io.write("list Of Games: \n" + db.getGames());
+        String nameOfGame = io.read();
+        // todo: check if game in list of games
         this.bg = new Boardgame(io,nameOfGame); //
     }
 
@@ -27,12 +29,12 @@ public class GameRunner {
     {
         bg.initialize(); //*
         //decideFirstPlayer();
-        while(!bg.isGameOver){
+        while(!bg.isGameOver()){
             Player p = bg.getNextPlayer();
-            // move io
             p.makeMove(bg.getState());
         }
-        //announceWinner();
+        io.write(bg.announceWinner()+" won!");
+        // todo: enter name to add one more win
     }
 
 }

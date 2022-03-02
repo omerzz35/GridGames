@@ -13,9 +13,7 @@ public class DB {
         return null;
     }
 
-    public Hashtable<String, Integer> getBestPlayers() {
-        return null;
-    }
+    public Hashtable<String, Integer> getBestPlayers() {return null;}
 
     public static DB getInstance() {
         return null;

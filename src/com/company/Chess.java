@@ -14,8 +14,9 @@ public class Chess extends AbstractGame{
         this.nameOfGame = "Chess";
     }
 
-    public void initialize()
+    public BoardAndColors initialize()
     {
+        // io.w...
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},
@@ -24,6 +25,10 @@ public class Chess extends AbstractGame{
                 {null,null,null,null,null,null,null,null},
                 {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
+        String colors[] = new String[2];
+        colors[0] = WHITE;
+        colors[1] = BLACK;
+        return new BoardAndColors(new Board(board) ,colors);
     }
 //    public Player getNextPlayer(){}
     public boolean isGameOver(Board board) {
