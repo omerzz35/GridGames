@@ -31,7 +31,7 @@ public class Boardgame {
         for (int i = 1; i < numOfPlayers ; i++)
         {
             while (true){
-                io.write("is Player " + (i + 1) + "is bot [yes/no]:");
+                io.write("is Player " + (i + 1) + " is bot [yes/no]:");
                 String bot = io.read();
                 if (bot == "no")
                 {

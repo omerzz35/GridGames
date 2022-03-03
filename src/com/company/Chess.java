@@ -179,12 +179,12 @@ public class Chess extends AbstractGame{
         if (board[i2][j2] != null)
         {
             if (board[i2][j2].getColor() == color){this.io.write("Illegal move"); return false;}
-            if (move == null){move = new Move(loc);}
+            if (move == null){move = new Move(board[i1][j1], loc);}
             move.addToKillList(new PieceWithLocation(board[i2][j2],loc.getDst()));
         }
         else
         {
-            if (move == null){move = new Move(loc);}
+            if (move == null){move = new Move(board[i1][j1], loc);}
         }
         return true;
     }

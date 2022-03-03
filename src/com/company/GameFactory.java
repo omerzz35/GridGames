@@ -1,9 +1,11 @@
 package com.company;
 
+import java.util.Locale;
+
 public class GameFactory {
     public static AbstractGame getGame(String nameOfGame, IO io)
     {
-        switch (nameOfGame)
+        switch (nameOfGame.toLowerCase())
         {
             case "chess":
                 return new Chess(io);

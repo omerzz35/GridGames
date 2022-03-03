@@ -31,6 +31,6 @@ public class Person extends Player{
             //todo:update board (pass move to .... to - update board and ui)
             if (!move.hasMoreMoves()) {break;} //if rules(loc)==true break else one more turn
         }
-        board.exe(move);
+        state.exe(move);
     }
 }
