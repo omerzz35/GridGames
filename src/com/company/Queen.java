@@ -10,8 +10,8 @@ public class Queen extends Piece{
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
-        int i = src.getX();
-        int j = src.getY();
+        int j = src.getX();
+        int i = src.getY();
         int x = src.getX() - dst.getX();
         int y = src.getY() - dst.getY();
         // check if legal move

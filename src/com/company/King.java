@@ -16,8 +16,13 @@ public class King extends Piece{
     public boolean isLegalMove(Locations loc, Board state){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
-        if (!(Math.abs(src.getX() - dst.getX()) <=1 && Math.abs(src.getY() - dst.getY()) <=1)){return false;}
+        int j = src.getX();
+        int i = src.getY();
+        if (!(Math.abs(src.getX() - dst.getX()) <=1 && Math.abs(src.getY() - dst.getY()) <=1))
+        {
+            return false;
+        }
         //todo:(after rules in player or isGameOver) check if after moving the king it is not checkmate
-        return true;
+        return this.color.equals(state.getState()[i][j].getColor());
     }
 }

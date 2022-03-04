@@ -11,10 +11,10 @@ public class Pawn extends Piece{
         Location src = loc.getSrc();
         Location dst = loc.getDst();
 
-        int i = src.getX();
-        int j = src.getY();
-        int x = src.getX() - dst.getX();
-        int y = src.getY() - dst.getY();
+//        int i = src.getY();
+//        int j = src.getX();
+        int x = src.getY() - dst.getY();// TODO: I = Y AND J = X!
+        int y = src.getX() - dst.getX();
 
         if (this.isFirstMove){
             this.isFirstMove = false;

@@ -8,7 +8,7 @@ public class Person extends Player{
 
     public void makeMove(Board state)// game state as an arg (in makeMove get the color / pass pieces)
     {
-        Move move =  null;
+        Move move = new Move();
         while(true)
         {
             // get pieces by color

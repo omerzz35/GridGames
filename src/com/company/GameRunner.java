@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 public class GameRunner {
     private Boardgame bg;
     private IO io;
@@ -24,8 +27,19 @@ public class GameRunner {
 
         //io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: NOT FOR EVERY GAME
         io.write("list Of Games: \n" + db.getGames()); //TODO: does not work
-        //this.nameOfGame = io.read(); //TODO: does not work
-        this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
+        while (true)
+        {
+            this.nameOfGame = io.read().toLowerCase(); //TODO: does not work
+            if (db.getGames().contains(this.nameOfGame))
+            {
+                break;
+            }
+            else
+            {
+                io.write("the game is not exist, try again");
+            }
+        }
+        //this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
         // todo: check if game in list of games
         this.bg = new Boardgame(io,this.nameOfGame);
         this.run();

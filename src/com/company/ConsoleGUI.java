@@ -36,7 +36,7 @@ public class ConsoleGUI extends GUI {
     public void draw() {
         if (drawCoordination) {
             for (int i = 0; i < board.length; i++) {
-                System.out.print("(#" + (i + 1) + ")");
+                System.out.print("(#" + (i + 1) + ")"); //todo: check if it should be io....
             }
 
         }
@@ -52,11 +52,14 @@ public class ConsoleGUI extends GUI {
                 } else { // not null
                     String temp = "";
                     if (board[i][j].getColor() == "Black") {
-                        temp.concat("B");
+//                        temp.concat("B");
+                        temp += "B";
                     } else {
-                        temp.concat("W");
+//                        temp.concat("W");
+                        temp += "W";
                     }
-                    temp.concat(board[i][j].getName());
+//                    temp.concat(board[i][j].getName());
+                    temp += board[i][j].getName();
                     System.out.print("[" + piecesToIcon.get(temp) + "]");
                 }
             }

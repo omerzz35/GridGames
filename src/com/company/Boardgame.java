@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Locale;
+
 public class Boardgame {
     private AbstractGame game;
     private int turn = -1, numOfPlayers;
@@ -17,7 +19,7 @@ public class Boardgame {
         this.io = io;
         GameFactory gf = new GameFactory();
         this.game = gf.getGame(nameOfGame ,io);
-        int i = 0;
+        //int i = 0;
     }
 
     public void initialize(GUI gui)
@@ -25,15 +27,16 @@ public class Boardgame {
         BoardAndColors bac = this.game.initialize();
         this.board = bac.getBoard();
         this.board.addObserver(gui);
+//        this.board.changeValue();
         String colors[] = bac.getColors();
         this.numOfPlayers = colors.length;
         players = new Player[numOfPlayers];
         players[0] = new Person(this.game,colors[0]);
-        for (int i = 0; i < numOfPlayers ; i++)
+        for (int i = 1; i < numOfPlayers ; i++)
         {
             while (true){
                 io.write("Is Player " + (i + 1) + " a bot ? [yes/no]:");
-                String bot = io.read();
+                String bot = io.read().toLowerCase();
                 if (bot.equals("no"))
                 {
                     players[i] = new Person(this.game,colors[i]);
@@ -52,6 +55,7 @@ public class Boardgame {
             }
 
         }
+        this.board.changeValue();
     }
 
     public boolean isGameOver()

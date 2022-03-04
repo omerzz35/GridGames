@@ -10,6 +10,7 @@ public class Board implements Observable{
     public Board(Piece[][] board){
         this.board = board;
         observers = new ArrayList<Observer>();
+        //this.changeValue(board);
     }
 
     public Piece[][] getState(){
@@ -40,11 +41,15 @@ public class Board implements Observable{
         {
             this.board[pwl.getLocation().getY()][pwl.getLocation().getX()] = pwl.getPiece();
         }
-
+        this.changeValue();
     }
 
     public void changeValue(Piece[][] board) {
         this.board = board;
+        this.notifyObservers();
+    }
+
+    public void changeValue() {
         this.notifyObservers();
     }
 

@@ -9,6 +9,7 @@ public abstract class GUI implements Observer{
 
     @Override
     public void update(Piece[][] board){
+        this.board = board;
         this.flush();
         this.draw();
     }

@@ -11,13 +11,13 @@ public class Knight extends Piece {
         Location src = loc.getSrc();
         Location dst = loc.getDst();
 
-        int i = src.getX();
-        int j = src.getY();
+        int j = src.getX();
+        int i = src.getY();
         int x = src.getX() - dst.getX();
         int y = src.getY() - dst.getY();
 
         if ((Math.abs(x) == 1 && Math.abs(y) == 2) || (Math.abs(x) == 2 && Math.abs(y) == 1)) {
-            return !(this.color.equals(state.getState()[dst.getX()][dst.getY()].getColor()));
+            return this.color.equals(state.getState()[i][j].getColor());
         }
         return false;
     }
