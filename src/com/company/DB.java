@@ -9,7 +9,7 @@ public class DB {
     public void addWin(String game, String name) {
     }
 
-    public String getGames() {
+    public List<String> getGames() {
         return null;
     }
 

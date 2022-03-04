@@ -25,7 +25,7 @@ public class GameRunner {
         //io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: NOT FOR EVERY GAME
         io.write("list Of Games: \n" + db.getGames()); //TODO: does not work
         //this.nameOfGame = io.read(); //TODO: does not work
-        this.nameOfGame = "chess"; // todo: ^ delete after io.read() ^
+        this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
         // todo: check if game in list of games
         this.bg = new Boardgame(io,this.nameOfGame);
         this.run();

@@ -110,4 +110,8 @@ public class FileDB extends DB{
         }
 
     }
+
+    public List<String> getGames(){
+        return this.games;
+    }
 }

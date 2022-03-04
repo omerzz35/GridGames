@@ -1,11 +1,20 @@
 package com.company;
 
-public class ConsoleIO extends IO{
+import java.util.Scanner;
 
-    public String read(){
-        String temp = System.console().readLine();
-        return temp;
+public class ConsoleIO extends IO{
+    Scanner scanner ;
+
+    public ConsoleIO(){
+        this.scanner = new Scanner(System.in);
     }
+
+    @Override
+    public String read(){
+        return scanner.nextLine();
+    }
+
+    @Override
     public void write(String str){
         System.out.println(str);
     }

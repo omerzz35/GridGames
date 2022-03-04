@@ -17,6 +17,7 @@ public class Boardgame {
         this.io = io;
         GameFactory gf = new GameFactory();
         this.game = gf.getGame(nameOfGame ,io);
+        int i = 0;
     }
 
     public void initialize(GUI gui)
@@ -28,17 +29,17 @@ public class Boardgame {
         this.numOfPlayers = colors.length;
         players = new Player[numOfPlayers];
         players[0] = new Person(this.game,colors[0]);
-        for (int i = 1; i < numOfPlayers ; i++)
+        for (int i = 0; i < numOfPlayers ; i++)
         {
             while (true){
-                io.write("is Player " + (i + 1) + " is bot [yes/no]:");
+                io.write("Is Player " + (i + 1) + " a bot ? [yes/no]:");
                 String bot = io.read();
-                if (bot == "no")
+                if (bot.equals("no"))
                 {
                     players[i] = new Person(this.game,colors[i]);
                     break;
                 }
-                else if (bot == "yes")
+                else if (bot.equals("yes"))
                 {
                     players[i] = new Person(this.game,colors[i]);
                     break;
