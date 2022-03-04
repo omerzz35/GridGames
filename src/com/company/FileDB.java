@@ -21,7 +21,7 @@ public class FileDB extends DB{
         if (!this.playersReader.exists()){
             try
             {
-                this.playersReader = File.createTempFile(this.playerTxt, ".txt");
+                this.playersReader.createNewFile(); // = File.createTempFile(this.playerTxt, ".txt");
             }
             catch (IOException e)
             {
@@ -47,13 +47,14 @@ public class FileDB extends DB{
             while (reader.hasNextLine()) {
                 String game = reader.nextLine();
                 Hashtable<String, Integer>map = new Hashtable<String, Integer>();
-                this.BestPlayers.put(game, map);
                 String data = reader.nextLine();
+                if (data.equals("\n")){continue;}
                 while (!data.equals("=")) {
                     String[] tokens = data.split(" ");
-                    this.BestPlayers.get(game).put(tokens[0], Integer.valueOf(tokens[1]));
+                    map.put(tokens[0], Integer.valueOf(tokens[1]));
                     data = reader.nextLine();
                 }
+                this.BestPlayers.put(game, map);
             }
             reader.close();
         }
@@ -92,10 +93,14 @@ public class FileDB extends DB{
 
     public void writeDb() {
         try {
-            FileWriter dbWriter = new FileWriter(this.playerTxt + ".txt", false);
-            for (String key : this.BestPlayers.keySet()) {
-                String toWrite = key + this.BestPlayers.get(key).toString() + "\n";
-                dbWriter.write(toWrite);
+            FileWriter dbWriter = new FileWriter( this.BestPlayers+ ".txt", false);
+            for (String game : this.BestPlayers.keySet()) {
+                dbWriter.write(game + "\n");
+                for (String player : this.BestPlayers.get(game).keySet()) {
+                    String toWrite = player + this.BestPlayers.get(game).get(player).toString() + "\n";
+                    dbWriter.write(toWrite);
+                }
+                dbWriter.write("=\n");
             }
             dbWriter.close();
         }
@@ -105,5 +110,4 @@ public class FileDB extends DB{
         }
 
     }
-
 }
