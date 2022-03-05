@@ -7,7 +7,7 @@ public class Rook extends Piece{
         this.name = "Rook";
     }
 
-    public boolean isLegalMove(Locations loc, Board state){
+    public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
         int j = src.getX();

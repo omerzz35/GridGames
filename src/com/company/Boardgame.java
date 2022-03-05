@@ -32,7 +32,7 @@ public class Boardgame {
         this.numOfPlayers = colors.length;
         players = new Player[numOfPlayers];
         players[0] = new Person(this.game,colors[0]);
-        for (int i = 1; i < numOfPlayers ; i++)
+        for (int i = 0; i < numOfPlayers ; i++)
         {
             while (true){
                 io.write("Is Player " + (i + 1) + " a bot ? [yes/no]:");

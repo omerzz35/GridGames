@@ -67,7 +67,7 @@ public class FileDB extends DB{
             Scanner reader = new Scanner(this.gamesReader);
             while (reader.hasNextLine()) {
                 String game = reader.nextLine();
-                this.games.add(game);
+                this.games.add(game.toLowerCase());
             }
         }
         catch (IOException e)

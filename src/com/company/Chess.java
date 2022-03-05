@@ -42,77 +42,79 @@ public class Chess extends AbstractGame{
     }
 
     public boolean isGameOver(Board board) {
-        return false;
-//        Piece[] kings = new Piece[2];
-//        Location[] kingsLoc = new Location[2];
-//        ArrayList<Location>[] possibleMoves = new ArrayList[2];
-//        ArrayList<Board>[] possibleBoards = new ArrayList[2];
-//        Piece[][] state = board.getState();
-//        List<Piece> pieceList = new ArrayList<Piece>();
-//        List<Location> pieceLocations = new ArrayList<Location>();
-//
-//        // iterating over the board to get all pieces locations
-//        int size = state[0].length;
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                if (state[i][j] instanceof King) {
-//                    // index = 0 if king's color is white, 1 if king's color is black
-//                    int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
-//                    kings[index] = state[i][j];
-//                    kingsLoc[index] = new Location(i, j);
-//                } else if (state[i][j] != null) { //if there is a piece saving it
-//                    pieceList.add(state[i][j]);
-//                    pieceLocations.add(new Location(i, j));
-//                }
-//
-//            }
-//        }
-//
-//        // for each king, establishing all his potential moves (including actual state). NOT USING IS_LEGAL_MOVE
-//        // METHOD because it will cause infinite loop
-//        for (int idx = 0; idx < 2; idx++) {
-//            String color = (idx == 0) ? WHITE : BLACK;
-//            possibleMoves[idx] = new ArrayList<Location>(); //for each king possible move
-//            possibleBoards[idx] = new ArrayList<Board>(); //for each king state of possible move
-//            for (int i = -1; i < 2; i++) {
-//                for (int j = -1; j < 2; j++) {
-//                    int dstX = kingsLoc[idx].getX() + i;
-//                    int dstY = kingsLoc[idx].getY() + j;
-//                    if (dstX > 0 && dstY > 0 && dstX < size && dstY < size) {
-//                        if (state[dstX][dstY] != null && state[dstX][dstY].getColor().equals(color)) {
-//                            continue;
-//                        }
-//                        possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
-//                        // we also need a temporary state with potential new state after move
-//                        Piece[][] tmpState = state.clone();
-//                        tmpState[kingsLoc[idx].getX()][kingsLoc[idx].getY()] = null;
-//                        tmpState[dstX][dstY] = kings[idx];
-//                        possibleBoards[idx].add(new Board(tmpState)); // adding potential state to possible boards
-//                    }
-//                }
-//            }
-//        }
-//
-//        // for all possible move of the king (including actual state) we are checking if an enemy can eat it.
-//        for (int i = 0; i < pieceList.size(); i++) {
-//            Piece piece = pieceList.get(i);
-//            // if the color is white we want to check black king possible moves, same in reverse case
-//            int color = (piece.getColor().equals(WHITE)) ? 1 : 0;
-//            for (Location loc : possibleMoves[color]) {
-//                Board potential = possibleBoards[color].get(i);
-//                if (piece.isLegalMove(new Locations(pieceLocations.get(i), loc), potential)) {
-//                    // if the piece can eat our king after it's potential move, this move is no more an option
-//                    possibleMoves[color].remove(loc);
-//                }
-//            }
-//        }
-//
-//        // if one of the kings does not have any more move without being eaten the game is over
-//        return possibleMoves[0].isEmpty() || possibleMoves[1].isEmpty();
+        Piece[] kings = new Piece[2];
+        Location[] kingsLoc = new Location[2];
+        ArrayList<Location>[] possibleMoves = new ArrayList[2];
+        ArrayList<Board>[] possibleBoards = new ArrayList[2];
+        Piece[][] state = board.getState();
+        List<Piece> pieceList = new ArrayList<Piece>();
+        List<Location> pieceLocations = new ArrayList<Location>();
+
+        // iterating over the board to get all pieces locations
+        int size = state[0].length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (state[i][j] instanceof King) {
+                    // index = 0 if king's color is white, 1 if king's color is black
+                    int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
+                    kings[index] = state[i][j];
+                    kingsLoc[index] = new Location(i, j);
+                } else if (state[i][j] != null) { //if there is a piece saving it
+                    pieceList.add(state[i][j]);
+                    pieceLocations.add(new Location(i, j));
+                }
+
+            }
+        }
+
+        // for each king, establishing all his potential moves (including actual state). NOT USING IS_LEGAL_MOVE
+        // METHOD because it will cause infinite loop
+        for (int idx = 0; idx < 2; idx++) {
+            String color = (idx == 0) ? WHITE : BLACK;
+            possibleMoves[idx] = new ArrayList<Location>(); //for each king possible move
+            possibleBoards[idx] = new ArrayList<Board>(); //for each king state of possible move
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    int dstX = kingsLoc[idx].getX() + i;
+                    int dstY = kingsLoc[idx].getY() + j;
+                    if (dstX >= 0 && dstY >= 0 && dstX < size && dstY < size) {
+                        if (state[dstX][dstY] != null && state[dstX][dstY].getColor().equals(color)) {
+                            if (i!= 0  || j!= 0){
+                                continue;
+                            }
+                        }
+                        possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
+                        // we also need a temporary state with potential new state after move
+                        Piece[][] tmpState = state.clone();
+                        tmpState[kingsLoc[idx].getX()][kingsLoc[idx].getY()] = null;
+                        tmpState[dstX][dstY] = kings[idx];
+                        possibleBoards[idx].add(new Board(tmpState)); // adding potential state to possible boards
+                    }
+                }
+            }
+        }
+
+        // for all possible move of the king (including actual state) we are checking if an enemy can eat it.
+        for (int i = 0; i < pieceList.size(); i++) {
+            Piece piece = pieceList.get(i);
+            // if the color is white we want to check black king possible moves, same in reverse case
+            int color = (piece.getColor().equals(WHITE)) ? 1 : 0;
+            for (int j = 0 ; j < possibleMoves[color].size() ; j++) {
+                Board potential = possibleBoards[color].get(j);
+                Location loc = possibleMoves[color].get(j);
+                if (piece.isLegalMove(new Locations(pieceLocations.get(i), loc), potential, true)) {
+                    // if the piece can eat our king after it's potential move, this move is no more an option
+                    possibleMoves[color].remove(loc);
+                }
+            }
+        }
+
+        // if one of the kings does not have any more move without being eaten the game is over
+        return possibleMoves[0].isEmpty() || possibleMoves[1].isEmpty();
 
     }
 
-    public String howToMove() {//how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
+    public String howToMove(String color) {//how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
         String src, dst;
         boolean flag = false;
         while (true)
@@ -120,7 +122,8 @@ public class Chess extends AbstractGame{
             this.io.write("select source square and destination square (press x to start over / write \"long castling\" / \" short castling\"  to do castling):");
             while (true)
             {
-                this.io.write("select source square");
+                this.io.write("Player " + color);
+                this.io.write("Select source square");
                 src = io.read().toLowerCase();
                 if (src == "castling") {return src;} // todo: long or short
                 if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') /*|| (src.charAt(0) >= 'A' && src.charAt(0) <= 'H'))*/ && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
@@ -190,7 +193,7 @@ public class Chess extends AbstractGame{
         Locations loc = new Locations(new Location(j1,i1),new Location(j2,i2));
         if (board[i1][j1] == null) {this.io.write("There is no piece at the source square"); return false;}
         if (board[i1][j1].getColor() != color) {this.io.write("it is not your piece"); return false;}
-        if (!board[i1][j1].isLegalMove(loc,state)) {this.io.write("Illegal move"); return false;}
+        if (!board[i1][j1].isLegalMove(loc,state, false)) {this.io.write("Illegal move"); return false;}
         if (board[i2][j2] != null)
         {
             if (board[i2][j2].getColor() == color){this.io.write("Illegal move"); return false;}

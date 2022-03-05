@@ -3,7 +3,7 @@ package com.company;
 public abstract class GUI implements Observer{
     protected Piece[][] board;
     protected boolean drawCoordination = true; //todo: switch according to the game
-    public abstract void draw();
+    public abstract void draw(Piece[][] board);
     public abstract void flush();
 
 
@@ -11,6 +11,6 @@ public abstract class GUI implements Observer{
     public void update(Piece[][] board){
         this.board = board;
         this.flush();
-        this.draw();
+        this.draw(board);
     }
 }

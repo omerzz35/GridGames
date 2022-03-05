@@ -13,7 +13,7 @@ public class King extends Piece{
     // In isGameOver we are verifying all potential move of the king. We do not want to call it from here to verify
     // if the move is legal ...
 
-    public boolean isLegalMove(Locations loc, Board state){
+    public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
         int j = src.getX();

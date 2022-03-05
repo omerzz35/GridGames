@@ -7,7 +7,7 @@ public class Knight extends Piece {
         this.name = "Knight";
     }
 
-    public boolean isLegalMove(Locations loc, Board state) {
+    public boolean isLegalMove(Locations loc, Board state, boolean gameOver) {
         Location src = loc.getSrc();
         Location dst = loc.getDst();
 
@@ -17,7 +17,8 @@ public class Knight extends Piece {
         int y = src.getY() - dst.getY();
 
         if ((Math.abs(x) == 1 && Math.abs(y) == 2) || (Math.abs(x) == 2 && Math.abs(y) == 1)) {
-            return this.color.equals(state.getState()[i][j].getColor());
+            return true;
+            //return this.color.equals(state.getState()[j][i].getColor());
         }
         return false;
     }

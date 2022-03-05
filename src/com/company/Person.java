@@ -13,7 +13,7 @@ public class Person extends Player{
         {
             // get pieces by color
             //Piece[] pieces = ....
-            String input = gameRules.howToMove(); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
+            String input = gameRules.howToMove(this.color); //how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
             // in how to move check simple things, like location in board (0 <=x,y< board.size)
             if (!gameRules.rules(input,state,this.color,move)) {// set in move vals
                 continue;

@@ -9,6 +9,6 @@ public abstract class Piece {
 //    public void setLocation(int x,int y){location.setX(x);location.setY(y);}
     public String getColor(){return color;}
     public String getName(){return name;}
-    public abstract boolean isLegalMove(Locations loc, Board state);
+    public abstract boolean isLegalMove(Locations loc, Board state, boolean gameOver);
     //public IO display(); // should not be here - the gui should get id of piece + color and do it himself
 }

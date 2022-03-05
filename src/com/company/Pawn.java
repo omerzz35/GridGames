@@ -1,13 +1,14 @@
 package com.company;
 
 public class Pawn extends Piece{
-    private boolean isFirstMove = true;
+    private boolean isFirstMove;
 
     public Pawn(String color){
         this.color = color;
         this.name = "Pawn";
+        this.isFirstMove = true;
     }
-    public boolean isLegalMove(Locations loc, Board state){
+    public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
 
@@ -17,8 +18,10 @@ public class Pawn extends Piece{
         int y = src.getX() - dst.getX();
 
         if (this.isFirstMove){
-            this.isFirstMove = false;
-             if ((Math.abs(x) == 1 || Math.abs(x) == 2) && Math.abs(y) == 0 && state.getState()[dst.getX()][dst.getY()] == null){
+            if (!gameOver) {
+                this.isFirstMove = false;
+            }
+             if ((Math.abs(x) == 1 || Math.abs(x) == 2) && Math.abs(y) == 0 && state.getState()[dst.getY()][dst.getX()] == null){
                  return true;
              }
         }
@@ -35,7 +38,7 @@ public class Pawn extends Piece{
             return false;
         }
         // If moving in diagonal check that there is an enemy piece at destination place
-        if(Math.abs(y) == 1 && this.color.equals(state.getState()[dst.getX()][dst.getY()].getColor())){
+        if(Math.abs(y) == 1 && this.color.equals(state.getState()[dst.getY()][dst.getX()].getColor())){
             return false;
         }
         return true;

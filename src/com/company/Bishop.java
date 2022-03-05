@@ -7,7 +7,7 @@ public class Bishop extends Piece{
         this.name = "Bishop";
     }
 
-    public boolean isLegalMove(Locations loc, Board state){
+    public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
         int i = src.getX();

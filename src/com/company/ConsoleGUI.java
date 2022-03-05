@@ -33,7 +33,8 @@ public class ConsoleGUI extends GUI {
         System.out.flush();
     }
 
-    public void draw() {
+    public void draw(Piece[][] board) {
+        this.board = board;
         if (drawCoordination) {
             for (int i = 0; i < board.length; i++) {
                 System.out.print("(#" + (i + 1) + ")"); //todo: check if it should be io....

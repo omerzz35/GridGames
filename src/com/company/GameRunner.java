@@ -29,6 +29,7 @@ public class GameRunner {
         io.write("list Of Games: \n" + db.getGames()); //TODO: does not work
         while (true)
         {
+            io.write("Which game ?");
             this.nameOfGame = io.read().toLowerCase(); //TODO: does not work
             if (db.getGames().contains(this.nameOfGame))
             {
@@ -49,6 +50,7 @@ public class GameRunner {
     {
         bg.initialize(gui);
         //decideFirstPlayer();
+        // gui.update(this.bg.getState().getState());
         while(!bg.isGameOver()){
             Player p = bg.getNextPlayer();
             p.makeMove(bg.getState());
