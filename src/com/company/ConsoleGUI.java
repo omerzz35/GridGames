@@ -69,21 +69,20 @@ public class ConsoleGUI extends GUI {
                     System.out.print("[ᅟ]");//char is :"ᅟ"
                 } else { // not null
                     String temp = "";
-                    if (board[i][j].getColor() == "Black") {
-//                        temp.concat("B");
-                        temp += "B";
-                    } else {
-//                        temp.concat("W");
-                        temp += "W";
-                    }
+//                    if (board[i][j].getColor() == "Black") {
+////                        temp.concat("B");
+//                        temp += "B";
+//                    } else {
+////                        temp.concat("W");
+//                        temp += "W";
+//                    }
 //                    temp.concat(board[i][j].getName());
-                    temp += board[i][j].getName();
+                    temp += board[i][j].getColor() + board[i][j].getName();
                     System.out.print("[" + piecesToIcon.get(temp) + "]");
                 }
             }
         }
         System.out.println();
     }
-
 }
 
