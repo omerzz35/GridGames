@@ -1,0 +1,12 @@
+WKing ♔
+WQueen ♕
+WRook ♖
+WBishop ♗
+WKnight ♘
+WPawn ♙
+BKing ♚
+BQueen ♛
+BRook ♜
+BBishop ♝
+BKnight ♞
+BPawn ♟
