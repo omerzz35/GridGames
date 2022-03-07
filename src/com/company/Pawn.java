@@ -18,19 +18,27 @@ public class Pawn extends Piece{
         int y = src.getX() - dst.getX();
 
         if (this.isFirstMove){
-            if (!gameOver) {
-                this.isFirstMove = false;
-            }
-             if ((Math.abs(x) == 1 || Math.abs(x) == 2) && Math.abs(y) == 0 && state.getState()[dst.getY()][dst.getX()] == null){
-                 return true;
+//            if (!gameOver) { // todo: check if legal move before
+//                this.isFirstMove = false;
+//            }
+             if ((Math.abs(x) == 1 || Math.abs(x) == 2) && Math.abs(y) == 0 && state.getState()[dst.getY()][dst.getX()] == null) {
+                 if ((this.color.equals("White") && x > 0) || (this.color.equals("Black") && x < 0))
+                 {
+                     if (!gameOver) {
+                         this.isFirstMove = false;
+                     }
+                     return true;
+                 }
+                 return false;
              }
+             else {return false;}
         }
 
         // Check if movement of pawn is in the correct direction
-        if (this.color.equals("WHITE") && x < 0){
+        if (this.color.equals("White") && x < 0){
             return false;
         }
-        else if (this.color.equals("BLACK") && x > 0){
+        else if (this.color.equals("Black") && x > 0){
             return false;
         }
         // Check the move is only one cell front and zero or one cell in diagonal
