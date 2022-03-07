@@ -10,12 +10,12 @@ public class Bishop extends Piece{
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
-        int i = src.getX();
-        int j = src.getY();
+        int j = src.getX();
+        int i = src.getY();
         int x = src.getX() - dst.getX();
         int y = src.getY() - dst.getY();
         // check if legal move
-        if (!(x == y)) { //diagonal (x == y)
+        if (!(Math.abs(x) == Math.abs(y))) { //diagonal (x == y)
             return false;
         }
 

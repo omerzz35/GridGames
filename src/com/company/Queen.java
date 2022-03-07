@@ -15,7 +15,7 @@ public class Queen extends Piece{
         int x = src.getX() - dst.getX();
         int y = src.getY() - dst.getY();
         // check if legal move
-        if (!((x == y) || (x == 0 || y == 0))) { //diagonal (x == y) , vertical or horizontal (x == 0 || y == 0 )
+        if (!((Math.abs(x) == Math.abs(y)) || (x == 0 || y == 0))) { //diagonal (x == y) , vertical or horizontal (x == 0 || y == 0 )
             return false;
         }
 //        else if (x != 0 || y != 0) { // vertical or horizontal

@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -7,23 +9,38 @@ public class ConsoleGUI extends GUI {
     //white : ♔ king, ♕ queen, ♖ rook, ♗ bishop, ♘ knight and ♙ pawn
     //black : ♚ king, ♛ queen, ♜ rook, ♝ bishop, ♞ knight and ♟ pawn
     private Hashtable<String, String> piecesToIcon = new Hashtable<String, String>();
-    ;
+    private File piecesToIconFile = new File("piecesToIcon.txt");
 
     public ConsoleGUI() {
         this.piecesToIcon = new Hashtable<String, String>();
+
+        try {
+            Scanner reader = new Scanner(this.piecesToIconFile);
+            while (reader.hasNextLine()) {
+                String  pti = reader.nextLine(); //pieces to icon
+                String[] tokens = pti.split(" ");
+                piecesToIcon.put(tokens[0],tokens[1]);
+            }
+            reader.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
         //todo: put it when you create ConsoleGUI (file)
-        piecesToIcon.put("WKing", "♔");
-        piecesToIcon.put("WQueen", "♕");
-        piecesToIcon.put("WRook", "♖");
-        piecesToIcon.put("WBishop", "♗");
-        piecesToIcon.put("WKnight", "♘");
-        piecesToIcon.put("WPawn", "♙");
-        piecesToIcon.put("BKing", "♚");
-        piecesToIcon.put("BQueen", "♛");
-        piecesToIcon.put("BRook", "♜");
-        piecesToIcon.put("BBishop", "♝");
-        piecesToIcon.put("BKnight", "♞");
-        piecesToIcon.put("BPawn", "♟");
+//        piecesToIcon.put("WKing", "♔");
+//        piecesToIcon.put("WQueen", "♕");
+//        piecesToIcon.put("WRook", "♖");
+//        piecesToIcon.put("WBishop", "♗");
+//        piecesToIcon.put("WKnight", "♘");
+//        piecesToIcon.put("WPawn", "♙");
+//        piecesToIcon.put("BKing", "♚");
+//        piecesToIcon.put("BQueen", "♛");
+//        piecesToIcon.put("BRook", "♜");
+//        piecesToIcon.put("BBishop", "♝");
+//        piecesToIcon.put("BKnight", "♞");
+//        piecesToIcon.put("BPawn", "♟");
     }
 
     // todo: it is just for chess!!!! - need to make it generic (pass piecesToIcon?)
@@ -49,7 +66,7 @@ public class ConsoleGUI extends GUI {
                     System.out.print("(" + Character.toString((char) (i + 'A')) + ")");
                 }
                 if (board[i][j] == null) {
-                    System.out.print("[ ]");
+                    System.out.print("[ᅟ]");//char is :"ᅟ"
                 } else { // not null
                     String temp = "";
                     if (board[i][j].getColor() == "Black") {
@@ -65,6 +82,7 @@ public class ConsoleGUI extends GUI {
                 }
             }
         }
+        System.out.println();
     }
 
 }

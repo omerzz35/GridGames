@@ -134,6 +134,10 @@ public class Chess extends AbstractGame{
                 {
                     flag = true;
                 }
+                else if (src.length() == 0 || src.length() > 2)
+                {
+                    continue;
+                }
                 break;
             }
             if (flag == true)
@@ -143,7 +147,7 @@ public class Chess extends AbstractGame{
             }
             while (true)
             {
-                this.io.write("select source square");
+                this.io.write("Select destination square");
                 dst = io.read().toLowerCase();
                 if (dst == "castling") {return dst;}
                 if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') /*|| (src.charAt(0) >= 'A' && src.charAt(0) <= 'H'))*/ && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
@@ -153,6 +157,10 @@ public class Chess extends AbstractGame{
                 else if (dst.length() == 1 && (dst.charAt(0) == 'x'))// || dst.charAt(0) == 'X'))
                 {
                     flag = true;
+                }
+                else if (src.length() == 0 || src.length() > 2)
+                {
+                    continue;
                 }
                 break;
             }
