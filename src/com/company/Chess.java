@@ -31,7 +31,7 @@ public class Chess extends AbstractGame{
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {null,null,null,null,null,null,null,null},
+                {null,null,null,null,new Queen(WHITE),null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
@@ -46,7 +46,7 @@ public class Chess extends AbstractGame{
         Location[] kingsLoc = new Location[2];
         ArrayList<Location>[] possibleMoves = new ArrayList[2];
         ArrayList<Board>[] possibleBoards = new ArrayList[2];
-        Piece[][] state = board.getState();
+        Piece[][] state = board.getState().clone();
         List<Piece> pieceList = new ArrayList<Piece>();
         List<Location> pieceLocations = new ArrayList<Location>();
 
@@ -119,13 +119,13 @@ public class Chess extends AbstractGame{
         boolean flag = false;
         while (true)
         {
-            this.io.write("select source square and destination square (press x to start over / write \"long castling\" / \" short castling\"  to do castling):");
+            this.io.write("select source square and destination square (press x to start over):");// / write \"long castling\" / \" short castling\"  to do castling):");
             while (true)
             {
                 this.io.write("Player " + color);
                 this.io.write("Select source square");
                 src = io.read().toLowerCase();
-                if (src == "castling") {return src;} // todo: long or short
+//                if (src == "castling") {return src;} // todo: long or short
                 if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') /*|| (src.charAt(0) >= 'A' && src.charAt(0) <= 'H'))*/ && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
                     this.io.write("Illegal input - try again");
                     continue;
@@ -149,8 +149,8 @@ public class Chess extends AbstractGame{
             {
                 this.io.write("Select destination square");
                 dst = io.read().toLowerCase();
-                if (dst == "castling") {return dst;}
-                if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') /*|| (src.charAt(0) >= 'A' && src.charAt(0) <= 'H'))*/ && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
+//                if (dst == "castling") {return dst;}
+                if (dst.length() == 2 && !((dst.charAt(0) >= 'a' && dst.charAt(0) <= 'h') && (dst.charAt(1) >= '1' && dst.charAt(1) <= '8'))) {
                     this.io.write("Illegal input - try again");
                     continue;
                 }
@@ -158,7 +158,7 @@ public class Chess extends AbstractGame{
                 {
                     flag = true;
                 }
-                else if (src.length() == 0 || src.length() > 2)
+                else if (dst.length() == 0 || dst.length() > 2)
                 {
                     continue;
                 }
@@ -176,10 +176,10 @@ public class Chess extends AbstractGame{
     // in how to move check simple things, like location in board (0 <=x,y< board.size)
 
     public boolean rules(String input,Board state,String color,Move move) {// set in move vals
-        if (input == "castling")
-        {
-            //todo: castling
-        }
+//        if (input == "castling")
+//        {
+//            //todo: castling
+//        }
 //        if (move == null){move = new Move()}
         int i1,j1,i2,j2;
         Piece[][] board = state.getState();

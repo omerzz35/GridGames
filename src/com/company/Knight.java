@@ -13,8 +13,8 @@ public class Knight extends Piece {
 
         int j = src.getX();
         int i = src.getY();
-        int x = src.getX() - dst.getX();
-        int y = src.getY() - dst.getY();
+        int x = dst.getX() - src.getX();
+        int y = dst.getY() - src.getY();
 
         if ((Math.abs(x) == 1 && Math.abs(y) == 2) || (Math.abs(x) == 2 && Math.abs(y) == 1)) {
             return true;

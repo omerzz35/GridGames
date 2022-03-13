@@ -16,6 +16,9 @@ public class Pawn extends Piece{
 //        int j = src.getX();
         int x = src.getY() - dst.getY();// TODO: I = Y AND J = X!
         int y = src.getX() - dst.getX();
+        //todo: all the x,y needs to be dst - src not src - dst
+//        int x = dst.getX() - src.getX();
+//        int y = dst.getY() - src.getY();
 
         if (this.isFirstMove){
 //            if (!gameOver) { // todo: check if legal move before
