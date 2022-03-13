@@ -28,7 +28,7 @@ public class ConsoleGUI extends GUI {
             e.printStackTrace();
         }
 
-        //todo: put it when you create ConsoleGUI (file)
+
 //        piecesToIcon.put("WKing", "♔");
 //        piecesToIcon.put("WQueen", "♕");
 //        piecesToIcon.put("WRook", "♖");
@@ -43,7 +43,7 @@ public class ConsoleGUI extends GUI {
 //        piecesToIcon.put("BPawn", "♟");
     }
 
-    // todo: it is just for chess!!!! - need to make it generic (pass piecesToIcon?)
+
     //https://stackoverflow.com/questions/50895577/printing-chess-board-with-unicodes
 
     public void flush(){

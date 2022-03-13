@@ -15,7 +15,7 @@ public class Boardgame {
     {
         // nameToGame.put("chess" , new Chess(io));
         // this.game = nameToGame.get(nameOfGame);// from nameToGame get game and pass IO and ...
-        // todo: check if in declaration it is initialize the obj
+
         this.io = io;
         GameFactory gf = new GameFactory();
         this.game = gf.getGame(nameOfGame ,io);

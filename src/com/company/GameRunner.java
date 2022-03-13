@@ -26,11 +26,11 @@ public class GameRunner {
         // IO NAME OF GAME
 
         //io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: NOT FOR EVERY GAME
-        io.write("list Of Games: \n" + db.getGames()); //TODO: does not work
+        io.write("list Of Games: \n" + db.getGames());
         while (true)
         {
             io.write("Which game ?");
-            this.nameOfGame = io.read().toLowerCase(); //TODO: does not work
+            this.nameOfGame = io.read().toLowerCase();
             if (db.getGames().contains(this.nameOfGame))
             {
                 break;
