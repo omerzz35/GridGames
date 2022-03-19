@@ -1,0 +1,9 @@
+chess
+Raphael 6
+Omer 12
+testwinner 1
+=
+checkers
+Raphael 5
+Omer 3
+=

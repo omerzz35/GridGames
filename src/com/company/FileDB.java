@@ -45,8 +45,9 @@ public class FileDB extends DB{
             Scanner reader = new Scanner(this.playersReader);
 
             while (reader.hasNextLine()) {
-                String game = reader.nextLine();
-                Hashtable<String, Integer>map = new Hashtable<String, Integer>();
+                String game = reader.nextLine().toLowerCase();
+                this.BestPlayers.put(game, new Hashtable<String, Integer>());
+                Hashtable<String, Integer>map = this.BestPlayers.get(game);
                 String data = reader.nextLine();
                 if (data.equals("\n")){continue;}
                 while (!data.equals("=")) {
@@ -54,7 +55,6 @@ public class FileDB extends DB{
                     map.put(tokens[0], Integer.valueOf(tokens[1]));
                     data = reader.nextLine();
                 }
-                this.BestPlayers.put(game, map);
             }
             reader.close();
         }
@@ -93,11 +93,11 @@ public class FileDB extends DB{
 
     public void writeDb() {
         try {
-            FileWriter dbWriter = new FileWriter( this.BestPlayers+ ".txt", false);
+            FileWriter dbWriter = new FileWriter( this.playersReader, false);
             for (String game : this.BestPlayers.keySet()) {
                 dbWriter.write(game + "\n");
                 for (String player : this.BestPlayers.get(game).keySet()) {
-                    String toWrite = player + this.BestPlayers.get(game).get(player).toString() + "\n";
+                    String toWrite = player + " " + this.BestPlayers.get(game).get(player).toString() + "\n";
                     dbWriter.write(toWrite);
                 }
                 dbWriter.write("=\n");

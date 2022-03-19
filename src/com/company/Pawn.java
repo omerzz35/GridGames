@@ -14,42 +14,53 @@ public class Pawn extends Piece{
 
 //        int i = src.getY();
 //        int j = src.getX();
-        int x = src.getY() - dst.getY();// TODO: I = Y AND J = X!
-        int y = src.getX() - dst.getX();
+        //int x = src.getY() - dst.getY();// TODO: I = Y AND J = X!
+        //int y = src.getX() - dst.getX();
         //todo: all the x,y needs to be dst - src not src - dst
-//        int x = dst.getX() - src.getX();
-//        int y = dst.getY() - src.getY();
+        int x = dst.getX() - src.getX();
+        int y = dst.getY() - src.getY();
 
         if (this.isFirstMove){
 //            if (!gameOver) { // todo: check if legal move before
 //                this.isFirstMove = false;
 //            }
-             if ((Math.abs(x) == 1 || Math.abs(x) == 2) && Math.abs(y) == 0 && state.getState()[dst.getY()][dst.getX()] == null) {
-                 if ((this.color.equals("White") && x > 0) || (this.color.equals("Black") && x < 0))
-                 {
-                     if (!gameOver) {
-                         this.isFirstMove = false;
+            if(Math.abs(y) == 2){
+                if(y<0 && state.getState()[dst.getY()+1][dst.getX()] != null){return false;}
+                if(y>0 && state.getState()[dst.getY()-1][dst.getX()] != null){return false;}
+            }
+             if (Math.abs(y) == 1 || Math.abs(y) == 2) {
+                 if (Math.abs(x) == 0 && state.getState()[dst.getY()][dst.getX()] == null) {
+                     if ((this.color.equals("White") && y < 0) || (this.color.equals("Black") && y > 0)) {
+                         if (!gameOver) {
+                             this.isFirstMove = false;
+                         }
+                         //                     if (Math.abs(x) == 2){
+                         //
+                         //                     }
+                         return true;
                      }
-                     return true;
                  }
-                 return false;
+                 if (Math.abs(y) == 1 && Math.abs(x) == 1 &&
+                         !this.color.equals(state.getState()[dst.getY()][dst.getX()].getColor())) {
+                     return (this.color.equals("White") && y < 0) || (this.color.equals("Black") && y > 0);
+                 }
+             return false;
              }
-             else {return false;}
         }
 
         // Check if movement of pawn is in the correct direction
-        if (this.color.equals("White") && x < 0){
+        if (this.color.equals("White") && y < 0){
             return false;
         }
-        else if (this.color.equals("Black") && x > 0){
+        else if (this.color.equals("Black") && y > 0){
             return false;
         }
         // Check the move is only one cell front and zero or one cell in diagonal
-        if (Math.abs(x) != 1 || Math.abs(y) > 1){
+        if (Math.abs(y) != 1 || Math.abs(x) > 1){
             return false;
         }
         // If moving in diagonal check that there is an enemy piece at destination place
-        if(Math.abs(y) == 1 && this.color.equals(state.getState()[dst.getY()][dst.getX()].getColor())){
+        if(Math.abs(x) == 1 && this.color.equals(state.getState()[dst.getY()][dst.getX()].getColor())){
             return false;
         }
         return true;
