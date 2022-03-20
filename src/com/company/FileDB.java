@@ -76,7 +76,8 @@ public class FileDB extends DB{
         }
     }
 
-    public Hashtable<String, Integer> getBestPlayers(String game){
+    public Hashtable<String, Integer> getBestPlayers(String game)
+    {
         return this.BestPlayers.get(game);
     }
 

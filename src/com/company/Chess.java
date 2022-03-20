@@ -83,7 +83,7 @@ public class Chess extends AbstractGame{
                                 continue;
                             }
                         }
-                        possibleMoves[idx].add(new Location(dstY, dstX)); // adding new possible location to list
+                        possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
                         // we also need a temporary state with potential new state after move
                         Piece[][] tmpState = state.clone();
                         tmpState[kingsLoc[idx].getY()][kingsLoc[idx].getX()] = null;
