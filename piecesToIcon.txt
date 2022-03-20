@@ -10,3 +10,5 @@ BlackRook ♜
 BlackBishop ♝
 BlackKnight ♞
 BlackPawn ♟
+BlackReversiDisk ⬤
+WhiteReversiDisk 𐩒

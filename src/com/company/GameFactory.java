@@ -12,6 +12,8 @@ public class GameFactory {
         {
             case "chess":
                 return new Chess(io);
+            case "reversi":
+                return new Reversi(io);
             default:
                 return null;
 

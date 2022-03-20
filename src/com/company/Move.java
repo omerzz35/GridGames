@@ -38,7 +38,10 @@ public class Move {
 
     public void setMoreMoves(boolean bool){this.MoreMoves = bool;}
     public boolean hasMoreMoves(){return MoreMoves;}
-    public void addToKillList(PieceWithLocation p){}
+
+    public void addToKillList(PieceWithLocation p){piecesKilled.add(p);}
+    public void addToMoveList(PieceWithLocations p){piecesMoved.add(p);}
+    public void addToAddList(PieceWithLocation p){piecesAdded.add(p);}
 
     public List<PieceWithLocations> getPiecesMoved() {
         return piecesMoved;
@@ -58,6 +61,11 @@ public class Move {
         this.isInitialized = true;
     }
 
+    public void setAddMove(Piece piece, Location loc)
+    {
+        piecesAdded.add(new PieceWithLocation(piece, loc));
+        this.isInitialized = true;
+    }
     public boolean isInitialized() {
         return isInitialized;
     }
