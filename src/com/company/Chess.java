@@ -58,10 +58,10 @@ public class Chess extends AbstractGame{
                     // index = 0 if king's color is white, 1 if king's color is black
                     int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
                     kings[index] = state[i][j];
-                    kingsLoc[index] = new Location(i, j);
+                    kingsLoc[index] = new Location(j, i);
                 } else if (state[i][j] != null) { //if there is a piece saving it
                     pieceList.add(state[i][j]);
-                    pieceLocations.add(new Location(i, j));
+                    pieceLocations.add(new Location(j, i));
                 }
 
             }
@@ -75,19 +75,19 @@ public class Chess extends AbstractGame{
             possibleBoards[idx] = new ArrayList<Board>(); //for each king state of possible move
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
-                    int dstX = kingsLoc[idx].getX() + i;
-                    int dstY = kingsLoc[idx].getY() + j;
+                    int dstX = kingsLoc[idx].getX() + j;
+                    int dstY = kingsLoc[idx].getY() + i;
                     if (dstX >= 0 && dstY >= 0 && dstX < size && dstY < size) {
-                        if (state[dstX][dstY] != null && state[dstX][dstY].getColor().equals(color)) {
-                            if (i!= 0  || j!= 0){
+                        if (state[dstY][dstX] != null && state[dstY][dstX].getColor().equals(color)) {
+                            if (i != 0 || j != 0){
                                 continue;
                             }
                         }
-                        possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
+                        possibleMoves[idx].add(new Location(dstY, dstX)); // adding new possible location to list
                         // we also need a temporary state with potential new state after move
                         Piece[][] tmpState = state.clone();
-                        tmpState[kingsLoc[idx].getX()][kingsLoc[idx].getY()] = null;
-                        tmpState[dstX][dstY] = kings[idx];
+                        tmpState[kingsLoc[idx].getY()][kingsLoc[idx].getX()] = null;
+                        tmpState[dstY][dstX] = kings[idx];
                         possibleBoards[idx].add(new Board(tmpState)); // adding potential state to possible boards
                     }
                 }

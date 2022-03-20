@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.lang.Object;
 
 public class GameRunner {
     private Boardgame bg;
@@ -25,25 +26,46 @@ public class GameRunner {
         // DB TOP 5 and  LIST OF GAMES (NAMES) and PVP (ONLINE OR LOCAL) PVE
         // IO NAME OF GAME
 
-        //io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: NOT FOR EVERY GAME
-        io.write("list Of Games: \n" + db.getGames());
         while (true)
         {
-            io.write("Which game ?");
-            this.nameOfGame = io.read().toLowerCase();
-            if (db.getGames().contains(this.nameOfGame))
+            io.write("list Of Games: \n" + db.getGames());
+            while (true)
             {
-                break;
+                io.write("Which game ?");
+                this.nameOfGame = io.read().toLowerCase();
+                if (db.getGames().contains(this.nameOfGame))
+                {
+                    break;
+                }
+                else
+                {
+                    io.write("the game is not exist, try again");
+                }
             }
-            else
+            //this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
+            // todo: check if game in list of games
+            this.bg = new Boardgame(io,this.nameOfGame);
+            this.run();
+            io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: sort and ...
+            try
             {
-                io.write("the game is not exist, try again");
+                wait(5000);
             }
+            catch (Exception e)
+            {
+
+            }
+            String exit;
+            while (true)
+            {
+                io.write("press enter to continue or x to exit");
+                exit = io.read().toLowerCase();
+                if (exit.length() == 0 || exit == "x"){break;}
+            }
+            if (exit == ""){break;}
         }
-        //this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
-        // todo: check if game in list of games
-        this.bg = new Boardgame(io,this.nameOfGame);
-        this.run();
+
+
     }
 
     public void run()
