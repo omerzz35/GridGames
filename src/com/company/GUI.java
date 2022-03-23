@@ -13,4 +13,9 @@ public abstract class GUI implements Observer{
         this.flush(); //todo: make it work
         this.draw(board);
     }
+
+    public void setCoordination(boolean shouldSDraw)
+    {
+        this.drawCoordination = shouldSDraw;
+    }
 }

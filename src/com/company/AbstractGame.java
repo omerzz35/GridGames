@@ -14,4 +14,7 @@ public abstract class AbstractGame implements Rules{
     // todo: in how to move check simple things, like location in board (0 <=x,y< board.size)
     public abstract boolean rules(String input,Board state,String color,Move move); // set in move vals
 
+    public abstract boolean shouldSDrawCoordination();
+
 }
+

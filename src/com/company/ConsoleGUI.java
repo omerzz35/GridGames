@@ -65,6 +65,9 @@ public class ConsoleGUI extends GUI {
                     System.out.println();
                     System.out.print("(" + Character.toString((char) (i + 'A')) + ")");
                 }
+                else if (j == 0 && i != 0){
+                    System.out.println();
+                }
                 if (board[i][j] == null) {
                     System.out.print("[ᅟ]");//char is :"ᅟ"
                 } else { // not null

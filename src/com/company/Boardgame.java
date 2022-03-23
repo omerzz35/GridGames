@@ -79,6 +79,11 @@ public class Boardgame {
         return this.players[turn].getColor();
     }
 
+    public boolean shouldDrawCoordination()
+    {
+        return game.shouldSDrawCoordination();
+    }
+
 //    public enum GameStatus {
 //        ACTIVE,
 //        BLACK_WIN,

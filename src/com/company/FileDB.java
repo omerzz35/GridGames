@@ -81,7 +81,7 @@ public class FileDB extends DB{
         return this.BestPlayers.get(game);
     }
 
-    public void addWin(String game, String name){
+    public void addWin(String game, String name) {
         Hashtable<String, Integer> map = this.BestPlayers.get(game);
         if(this.BestPlayers.containsKey(name)){
             map.put(name, map.get(name) + 1);

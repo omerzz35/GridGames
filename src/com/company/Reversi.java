@@ -153,4 +153,9 @@ public class Reversi extends AbstractGame {
         }
     }
 
+    @Override
+    public boolean shouldSDrawCoordination() {
+        return true;
+    }
+
 }

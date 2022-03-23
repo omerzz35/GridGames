@@ -45,6 +45,7 @@ public class GameRunner {
             //this.nameOfGame = "Chess"; // todo: ^ delete after io.read() ^
             // todo: check if game in list of games
             this.bg = new Boardgame(io,this.nameOfGame);
+            gui.setCoordination(this.bg.shouldDrawCoordination());
             this.run();
             io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: sort and ...
             try

@@ -31,7 +31,7 @@ public class Chess extends AbstractGame{
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {null,null,null,null,new Queen(WHITE),null,null,null},
+                {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
@@ -288,6 +288,11 @@ public class Chess extends AbstractGame{
                 move.setMove(board[i1][j1], loc);
             }
         }
+        return true;
+    }
+
+    @Override
+    public boolean shouldSDrawCoordination() {
         return true;
     }
 }
