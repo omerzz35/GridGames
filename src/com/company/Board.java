@@ -10,7 +10,6 @@ public class Board implements Observable{
     public Board(Piece[][] board){
         this.board = board;
         observers = new ArrayList<Observer>();
-        //this.changeValue(board);
     }
 
     public Piece[][] getState(){
@@ -23,20 +22,23 @@ public class Board implements Observable{
         }
     }
 
-    public void exe(Move move)
-    {
+    // execute the move
+    public void exe(Move move) {
         List<PieceWithLocation> piecesKilled =  move.getPiecesKilled();
         List<PieceWithLocations> piecesMoved = move.getPiecesMoved();
         List<PieceWithLocation> piecesAdded = move.getPiecesAdded();
+
         for (PieceWithLocation pwl: piecesKilled)
         {
             this.board[pwl.getLocation().getY()][pwl.getLocation().getX()] = null;
         }
+
         for (PieceWithLocations pwls: piecesMoved)
         {
             this.board[pwls.getLocations().getSrc().getY()][pwls.getLocations().getSrc().getX()] = null;
             this.board[pwls.getLocations().getDst().getY()][pwls.getLocations().getDst().getX()] = pwls.getPiece();
         }
+
         for (PieceWithLocation pwl: piecesAdded)
         {
             this.board[pwl.getLocation().getY()][pwl.getLocation().getX()] = pwl.getPiece();

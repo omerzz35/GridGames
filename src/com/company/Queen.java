@@ -14,13 +14,11 @@ public class Queen extends Piece{
         int i = src.getY();
         int x = dst.getX() - src.getX();
         int y = dst.getY() - src.getY();
+
         // check if legal move
         if (!((Math.abs(x) == Math.abs(y)) || (x == 0 || y == 0))) { //diagonal (x == y) , vertical or horizontal (x == 0 || y == 0 )
             return false;
         }
-//        else if (x != 0 || y != 0) { // vertical or horizontal
-//            return false;
-//        }
 
         // check if queen did not "jump" over any piece on the board
         int iter = Math.max(Math.abs(x),Math.abs(y)) - 1; // last square can be with piece (-1)
@@ -30,9 +28,9 @@ public class Queen extends Piece{
         {
             i += y;
             j += x;
-            if(state.getState()[i][j] != null){return false;}
+            if(state.getState()[i][j] != null) { return false; }
         }
-        //todo:(after rules in player or isGameOver) check if after moving the queen it is not checkmate
+
         return true;
     }
 }

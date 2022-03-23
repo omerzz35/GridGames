@@ -11,19 +11,10 @@ public class Pawn extends Piece{
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
-
-//        int i = src.getY();
-//        int j = src.getX();
-        //int x = src.getY() - dst.getY();// TODO: I = Y AND J = X!
-        //int y = src.getX() - dst.getX();
-        //todo: all the x,y needs to be dst - src not src - dst
         int x = dst.getX() - src.getX();
         int y = dst.getY() - src.getY();
 
         if (this.isFirstMove){
-//            if (!gameOver) { // todo: check if legal move before
-//                this.isFirstMove = false;
-//            }
             if(Math.abs(y) == 2){
                 if(y<0 && state.getState()[dst.getY()+1][dst.getX()] != null){return false;}
                 if(y>0 && state.getState()[dst.getY()-1][dst.getX()] != null){return false;}
@@ -34,9 +25,6 @@ public class Pawn extends Piece{
                          if (!gameOver) {
                              this.isFirstMove = false;
                          }
-                         //                     if (Math.abs(x) == 2){
-                         //
-                         //                     }
                          return true;
                      }
                  }

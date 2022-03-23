@@ -14,6 +14,7 @@ public class Bishop extends Piece{
         int i = src.getY();
         int x = dst.getX() - src.getX();
         int y = dst.getY() - src.getY();
+
         // check if legal move
         if (!(Math.abs(x) == Math.abs(y))) { //diagonal (x == y)
             return false;
@@ -29,7 +30,6 @@ public class Bishop extends Piece{
             j += x;
             if(state.getState()[i][j] != null){return false;}
         }
-        //todo:(after rules in player or isGameOver) check if after moving the bishop it is not checkmate
         return true;
     }
 }

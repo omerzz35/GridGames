@@ -7,19 +7,12 @@ public class Boardgame {
     private int turn = -1, numOfPlayers;
     private Player players[];
     private IO io;
-
-    // private Map<String,AbstractGame> nameToGame = new HashMap(); // make hashmap from name to obj from file of possible games
-    //private String nameOfGame;
     private Board board;
     public Boardgame(IO io,String nameOfGame)
     {
-        // nameToGame.put("chess" , new Chess(io));
-        // this.game = nameToGame.get(nameOfGame);// from nameToGame get game and pass IO and ...
-
         this.io = io;
         GameFactory gf = new GameFactory();
         this.game = gf.getGame(nameOfGame ,io);
-        //int i = 0;
     }
 
     public void initialize(GUI gui)
@@ -27,7 +20,6 @@ public class Boardgame {
         BoardAndColors bac = this.game.initialize();
         this.board = bac.getBoard();
         this.board.addObserver(gui);
-//        this.board.changeValue();
         String colors[] = bac.getColors();
         this.numOfPlayers = colors.length;
         players = new Player[numOfPlayers];
@@ -83,13 +75,4 @@ public class Boardgame {
     {
         return game.shouldSDrawCoordination();
     }
-
-//    public enum GameStatus {
-//        ACTIVE,
-//        BLACK_WIN,
-//        WHITE_WIN,
-//        FORFEIT,
-//        STALEMATE,
-//        RESIGNATION
-//    }
 }

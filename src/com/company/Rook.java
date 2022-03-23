@@ -14,9 +14,7 @@ public class Rook extends Piece{
         int i = src.getY();
         int x = dst.getX() - src.getX();
         int y = dst.getY() - src.getY();
-//        int x = src.getX() - dst.getX();
-//        int y = src.getY() - dst.getY();
-        // check if legal move
+
         if (!(x == 0 || y == 0)) { // vertical or horizontal (x == 0 || y == 0 )
             return false;
         }
@@ -31,7 +29,7 @@ public class Rook extends Piece{
             j += x;
             if(state.getState()[i][j] != null){return false;}
         }
-        //todo:(after rules in player or isGameOver) check if after moving the rook it is not checkmate
+
         return true;
     }
 }
