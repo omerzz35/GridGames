@@ -9,6 +9,10 @@ public class ConsoleGUI extends GUI {
     private Hashtable<String, String> piecesToIcon = new Hashtable<String, String>();
     private File piecesToIconFile = new File("piecesToIcon.txt");
 
+    /**
+     * makes the console gui
+     * constructor
+     */
     public ConsoleGUI() {
         this.piecesToIcon = new Hashtable<String, String>();
 
@@ -27,10 +31,16 @@ public class ConsoleGUI extends GUI {
         }
     }
 
+    /**
+     * flushes the console
+     */
     public void flush(){
         System.out.flush();
     }
 
+    /**
+     * @param board the board that needs to be represented on the gui
+     */
     public void draw(Piece[][] board) {
         this.board = board;
         if (drawCoordination) {

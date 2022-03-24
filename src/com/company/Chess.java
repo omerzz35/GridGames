@@ -9,13 +9,18 @@ public class Chess extends AbstractGame{
     private static final String WHITE = "White";
     private String nameOfGame = "Chess";
 
+    /**
+     * @param io -io
+     * constructor
+     */
     public Chess(IO io) {
         super(io);
         this.nameOfGame = "Chess";
     }
 
     /**
-     * @return BoardAndColors
+     * @return BoardAndColors the initialized board and the colors of the
+     * players (number of players according to the size of the array)
      */
     public BoardAndColors initialize()
     {
@@ -34,8 +39,8 @@ public class Chess extends AbstractGame{
     }
 
     /**
-     * @param board
-     * @return
+     * @param board - the state of the board
+     * @return is game over
      */
     public boolean isGameOver(Board board) {
         Piece[] kings = new Piece[2];
@@ -111,6 +116,10 @@ public class Chess extends AbstractGame{
     }
 
 
+    /**
+     * @param color the color of the player that needs to make the move
+     * @return string that represents the move
+     */
     public String howToMove(String color) {
         String src, dst;
         boolean flag = false;
@@ -122,8 +131,7 @@ public class Chess extends AbstractGame{
                 this.io.write("Player " + color);
                 this.io.write("Select source square");
                 src = io.read().toLowerCase();
-//                if (src == "castling") {return src;} // todo: long or short
-                if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') /*|| (src.charAt(0) >= 'A' && src.charAt(0) <= 'H'))*/ && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) { // src[0] == A B C D E F G H - src[1] == 1 2 3 4 5 6 7 8
+                if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) {
                     this.io.write("Illegal input - try again");
                     continue;
                 }
@@ -146,12 +154,11 @@ public class Chess extends AbstractGame{
             {
                 this.io.write("Select destination square");
                 dst = io.read().toLowerCase();
-//                if (dst == "castling") {return dst;}
                 if (dst.length() == 2 && !((dst.charAt(0) >= 'a' && dst.charAt(0) <= 'h') && (dst.charAt(1) >= '1' && dst.charAt(1) <= '8'))) {
                     this.io.write("Illegal input - try again");
                     continue;
                 }
-                else if (dst.length() == 1 && (dst.charAt(0) == 'x'))// || dst.charAt(0) == 'X'))
+                else if (dst.length() == 1 && (dst.charAt(0) == 'x'))
                 {
                     flag = true;
                 }
@@ -173,14 +180,14 @@ public class Chess extends AbstractGame{
 
     /**
      *
-     * @param input
-     * @param state
-     * @param color
-     * @param move
-     * @return boolean - should
+     * @param input - the string that represents the move
+     * @param state - state of the board
+     * @param color - the color of the player that needs to make the move
+     * @param move - the object of move that contains information of what should change in the board
+     * @return boolean - should make more move/s?
      */
     public boolean rules(String input,Board state,String color,Move move) {// set in move vals
-        int i1,j1,i2,j2;
+        int i1, j1, i2, j2;
         Piece[][] board = state.getState();
         i1 = input.charAt(0) - 'a';
         j1 = input.charAt(1) - '1';
@@ -206,6 +213,9 @@ public class Chess extends AbstractGame{
         return true;
     }
 
+    /**
+     * @return should draw the coordination (like 12... and ab...)
+     */
     @Override
     public boolean shouldSDrawCoordination() {
         return true;

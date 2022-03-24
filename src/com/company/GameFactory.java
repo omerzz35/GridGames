@@ -4,8 +4,16 @@ import java.util.Locale;
 
 public class GameFactory {
 
+    /**
+     * constructor
+     */
     public GameFactory(){}
 
+    /**
+     * @param nameOfGame - the name of the game
+     * @param io -io
+     * @return the game
+     */
     public static AbstractGame getGame(String nameOfGame, IO io)
     {
         switch (nameOfGame.toLowerCase())

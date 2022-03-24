@@ -19,8 +19,6 @@ public class GameRunner {
 
     public void Start()
     {
-        // DB TOP 5 and  LIST OF GAMES (NAMES) and PVP (ONLINE OR LOCAL) PVE
-        // IO NAME OF GAME
         while (true)
         {
             io.write("list Of Games: \n" + db.getGames());

@@ -8,6 +8,12 @@ public class Boardgame {
     private Player players[];
     private IO io;
     private Board board;
+
+    /**
+     * @param io - io
+     * @param nameOfGame - the name of the game
+     * constructor - creates the game
+     */
     public Boardgame(IO io,String nameOfGame)
     {
         this.io = io;
@@ -15,6 +21,10 @@ public class Boardgame {
         this.game = gf.getGame(nameOfGame ,io);
     }
 
+    /**
+     * @param gui - The GUI that will be used for the game
+     * initialize the board game
+     */
     public void initialize(GUI gui)
     {
         BoardAndColors bac = this.game.initialize();
@@ -50,27 +60,42 @@ public class Boardgame {
         this.board.changeValue();
     }
 
+    /**
+     * @return is game over (boolean)
+     */
     public boolean isGameOver()
     {
         return this.game.isGameOver(board);
     }
 
+    /**
+     * @return the next player
+     */
     public Player getNextPlayer()
     {
         turn = (turn + 1) % numOfPlayers;
         return players[turn];
     }
 
+    /**
+     * @return the state of the board (as board)
+     */
     public Board getState()
     {
         return this.board;
     }
 
+    /**
+     * @return the color of the winner
+     */
     public String announceWinner()
     {
         return this.players[turn].getColor();
     }
 
+    /**
+     * @return should draw the coordination (like 12... and ab...)
+     */
     public boolean shouldDrawCoordination()
     {
         return game.shouldSDrawCoordination();

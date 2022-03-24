@@ -2,11 +2,21 @@ package com.company;
 
 public class King extends Piece{
 
+    /**
+     * @param color - the color of the King
+     * constructor
+     */
     public King(String color) {
         this.color = color;
         this.name = "King";
     }
 
+    /**
+     * @param loc - Locations (src and dst)
+     * @param state - the state of the board
+     * @param gameOver - is the games started
+     * @return is legal move
+     */
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
