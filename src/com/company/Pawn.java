@@ -3,11 +3,22 @@ package com.company;
 public class Pawn extends Piece{
     private boolean isFirstMove;
 
+    /**
+     * @param color - the color of the King
+     * constructor
+     */
     public Pawn(String color){
         this.color = color;
         this.name = "Pawn";
         this.isFirstMove = true;
     }
+
+    /**
+     * @param loc - Locations (src and dst)
+     * @param state - the state of the board
+     * @param gameOver - is the games started
+     * @return is legal move
+     */
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
@@ -53,6 +64,5 @@ public class Pawn extends Piece{
         }
         return true;
     }
-    //todo: if it reached to the other side should be replaced with another piece
 
 }

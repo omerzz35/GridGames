@@ -23,6 +23,9 @@ public class Board implements Observable{
         return this.board;
     }
 
+    /**
+     * notify all observers
+     */
     public void notifyObservers() {
         for (Observer observer : observers) {
             observer.update(board);

@@ -2,10 +2,19 @@ package com.company;
 
 public class Person extends Player{
 
+    /**
+     * @param gameRules - game rules
+     * @param color - the color of the pieces
+     * constructor
+     */
     public Person(Rules gameRules, String color) {
         super(gameRules, color);
     }
 
+    /**
+     * @param state - the state of the board
+     * get input from the person and make the move object for execute
+     */
     public void makeMove(Board state)// game state as an arg (in makeMove get the color / pass pieces)
     {
         Move move = new Move();
