@@ -179,7 +179,6 @@ public class Chess extends AbstractGame{
     }
 
     /**
-     *
      * @param input - the string that represents the move
      * @param state - state of the board
      * @param color - the color of the player that needs to make the move
