@@ -105,6 +105,7 @@ public class FileDB extends DB{
     public void addWin(String game, String name) {
         boolean modified = false;
         ArrayList<User> bestplayers = this.BestPlayers.get(game);
+        //todo: if game is not initialize + name should be all caps
         for (int i = 0; i < bestplayers.size() - 1; i++){
             if(bestplayers.get(i).getName().equals(name)){
                 bestplayers.get(i).setWins(bestplayers.get(i).getWins()+1);

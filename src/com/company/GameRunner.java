@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.lang.Object;
 
-public class GameRunner extends Boardgame {
+public class GameRunner {
     private Boardgame bg;
     private IO io;
     private GUI gui;
@@ -24,9 +24,13 @@ public class GameRunner extends Boardgame {
             io.write("list Of Games: \n" + db.getGames());
             while (true)
             {
-                io.write("Which game ?");
+                io.write("Which game ?(press x to exit) ");
                 this.nameOfGame = io.read().toLowerCase();
-                if (db.getGames().contains(this.nameOfGame))
+                if (this.nameOfGame.equals("x"))
+                {
+                    return;
+                }
+                else if (db.getGames().contains(this.nameOfGame))
                 {
                     break;
                 }
@@ -38,7 +42,7 @@ public class GameRunner extends Boardgame {
             this.bg = new Boardgame(io,this.nameOfGame);
             gui.setCoordination(this.bg.shouldDrawCoordination());
             this.run();
-            io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: sort and ...
+            io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame));
 //            for (String name : db.getBestPlayers(this.nameOfGame).keySet() ){
 //                io.write(name + " " + db.getBestPlayers(this.nameOfGame).get(name));
 //            }
@@ -55,9 +59,9 @@ public class GameRunner extends Boardgame {
             {
                 io.write("press enter to continue or x to exit");
                 exit = io.read().toLowerCase();
-                if (exit.length() == 0 || exit == "x"){break;}
+                if (exit.length() == 0 || exit.equals("x")){break;}
             }
-            if (exit == ""){break;}
+            if (exit.equals("x")){return;}
         }
 
 
