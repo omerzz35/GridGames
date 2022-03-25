@@ -24,7 +24,7 @@ public class Board implements Observable{
     }
 
     /**
-     * notify all observers
+     * notify all observers about a move
      */
     public void notifyObservers() {
         for (Observer observer : observers) {

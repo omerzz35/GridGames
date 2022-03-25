@@ -13,6 +13,10 @@ public class Reversi extends AbstractGame {
         this.nameOfGame = "Reversi";
     }
 
+    /**
+     * @return BoardAndColors the initialized board and the colors of the
+     * players (number of players according to the size of the array)
+     */
     public BoardAndColors initialize()
     {
         Piece board[][] = {{null,null,null,null,null,null,null,null},
@@ -28,6 +32,11 @@ public class Reversi extends AbstractGame {
         colors[1] = BLACK;
         return new BoardAndColors(new Board(board) ,colors);
     }
+
+    /**
+     * @param board - the state of the board
+     * @return boolean is game over
+     */
     public boolean isGameOver(Board board)
     {
         Piece[][] state = board.getState();
@@ -54,6 +63,10 @@ public class Reversi extends AbstractGame {
         return (whiteCounter == 0|| blackCounter == 0 || blackCounter + whiteCounter == sizeX * sizeY);
     }
 
+    /**
+     * @param color the color of the player that needs to make the move
+     * @return string that represents the move
+     */
     public String howToMove(String color) {//how to play (dice or Square selection etc...) - Press Enter to throw the dice / choose source square and destination square / choose square to put piece
         String src;
         boolean flag = false;
@@ -76,6 +89,14 @@ public class Reversi extends AbstractGame {
         }
     }
 
+    /**
+     *
+     * @param input - the string that represents the move
+     * @param state - state of the board
+     * @param color - the color of the player that needs to make the move
+     * @param move - the object of move that contains information of what should change in the board
+     * @return boolean - should make more move/s?
+     */
     public boolean rules(String input,Board state,String color,Move move) {// set in move vals
         Piece[][] board = state.getState();
         int i = input.charAt(0) - 'a';
@@ -103,6 +124,11 @@ public class Reversi extends AbstractGame {
         return true;
     }
 
+    /**
+     * @param move - the object of move that contains information of what should change in the board
+     * @param loc - location of a piece
+     * @param state - state board
+     */
     private void applyMoveAllDirections(Move move, Location loc ,Piece[][] state)
     {
         for (int i = -1; i <= 1; i++)
@@ -118,6 +144,13 @@ public class Reversi extends AbstractGame {
         }
     }
 
+    /**
+     * @param x - the x direction
+     * @param y - the y direction
+     * @param loc - location of a piece
+     * @param move - the object of move that contains information of what should change in the board
+     * @param state - state board
+     */
     private void applyMove(int x, int y, Location loc, Move move, Piece[][] state)
     {
         int sizeX = state[0].length - 1;
@@ -153,6 +186,9 @@ public class Reversi extends AbstractGame {
         }
     }
 
+    /**
+     * @return should draw the coordination (like 12... and ab...)
+     */
     @Override
     public boolean shouldSDrawCoordination() {
         return true;

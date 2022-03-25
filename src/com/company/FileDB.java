@@ -15,6 +15,9 @@ public class FileDB extends DB{
     private final List<String> games = new ArrayList<String>();
     private final String playerTxt = "best_players";
 
+    /**
+     * private constructor of singleton
+     */
     private FileDB() {
         this.playersReader = new File(this.playerTxt + ".txt");
         this.gamesReader = new File("games.txt");
@@ -31,6 +34,9 @@ public class FileDB extends DB{
         this.readDb();
     }
 
+    /**
+     * @return the single instance of file db
+     */
     // Static method to create instance of Singleton class
     public static DB getInstance()
     {
@@ -40,6 +46,9 @@ public class FileDB extends DB{
         return single_instance;
     }
 
+    /**
+     * Read database and save informations locally
+     */
     public void readDb(){
         try {
             Scanner reader = new Scanner(this.playersReader);
@@ -76,11 +85,21 @@ public class FileDB extends DB{
         }
     }
 
+    /**
+     * Get best players of a specific game
+     * @param game the game we want best players
+     * @return best players
+     */
     public Hashtable<String, Integer> getBestPlayers(String game)
     {
         return this.BestPlayers.get(game);
     }
 
+    /**
+     * Add a win to a specific game
+     * @param game the game with a win
+     * @param name the name of the player
+     */
     public void addWin(String game, String name) {
         Hashtable<String, Integer> map = this.BestPlayers.get(game);
         if(this.BestPlayers.containsKey(name)){
@@ -92,6 +111,9 @@ public class FileDB extends DB{
         this.writeDb();
     }
 
+    /**
+     * Save local db for next time
+     */
     public void writeDb() {
         try {
             FileWriter dbWriter = new FileWriter( this.playersReader, false);
@@ -112,6 +134,10 @@ public class FileDB extends DB{
 
     }
 
+    /**
+     * Return currently playable games
+     * @return list of games
+     */
     public List<String> getGames(){
         return this.games;
     }

@@ -6,6 +6,12 @@ public class ReversiDisk extends Piece{
         this.name = "ReversiDisk";
     }
 
+    /**
+     * @param loc      - Locations (src and dst)
+     * @param state    - the state of the board
+     * @param gameOver - is the games started
+     * @return boolean if move is legal
+     */
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         int j = loc.getSrc().getX();
         int i = loc.getSrc().getY();

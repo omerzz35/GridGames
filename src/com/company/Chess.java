@@ -40,7 +40,7 @@ public class Chess extends AbstractGame{
 
     /**
      * @param board - the state of the board
-     * @return is game over
+     * @return boolean is game over
      */
     public boolean isGameOver(Board board) {
         Piece[] kings = new Piece[2];

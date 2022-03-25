@@ -7,6 +7,10 @@ public abstract class GUI implements Observer{
     public abstract void flush();
 
 
+    /**
+     * Update visualisation of game
+     * @param board current board
+     */
     @Override
     public void update(Piece[][] board){
         this.board = board;
@@ -14,6 +18,9 @@ public abstract class GUI implements Observer{
         this.draw(board);
     }
 
+    /**
+     * @param shouldSDraw if coordinates are necessary to game
+     */
     public void setCoordination(boolean shouldSDraw)
     {
         this.drawCoordination = shouldSDraw;

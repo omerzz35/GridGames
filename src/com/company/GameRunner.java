@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.lang.Object;
 
-public class GameRunner {
+public class GameRunner extends Boardgame {
     private Boardgame bg;
     private IO io;
     private GUI gui;
@@ -39,6 +39,9 @@ public class GameRunner {
             gui.setCoordination(this.bg.shouldDrawCoordination());
             this.run();
             io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: sort and ...
+            for (String name : db.getBestPlayers(this.nameOfGame).keySet() ){
+                io.write(name + " " + db.getBestPlayers(this.nameOfGame).get(name));
+            }
             try
             {
                 wait(5000);

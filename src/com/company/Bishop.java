@@ -7,6 +7,13 @@ public class Bishop extends Piece{
         this.name = "Bishop";
     }
 
+
+    /**
+     * @param loc      - Locations (src and dst)
+     * @param state    - the state of the board
+     * @param gameOver - is the games started
+     * @return
+     */
     public boolean isLegalMove(Locations loc, Board state, boolean gameOver){
         Location src = loc.getSrc();
         Location dst = loc.getDst();
