@@ -39,9 +39,9 @@ public class GameRunner extends Boardgame {
             gui.setCoordination(this.bg.shouldDrawCoordination());
             this.run();
             io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame)); //TODO: sort and ...
-            for (String name : db.getBestPlayers(this.nameOfGame).keySet() ){
-                io.write(name + " " + db.getBestPlayers(this.nameOfGame).get(name));
-            }
+//            for (String name : db.getBestPlayers(this.nameOfGame).keySet() ){
+//                io.write(name + " " + db.getBestPlayers(this.nameOfGame).get(name));
+//            }
             try
             {
                 wait(5000);

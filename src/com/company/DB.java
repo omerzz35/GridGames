@@ -1,6 +1,7 @@
 package com.company;
 
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class DB {
         return null;
     }
 
-    public Hashtable<String, Integer> getBestPlayers(String game) {return null;}
+    public ArrayList<User> getBestPlayers(String game) {return null;}
 
     public static DB getInstance() {
         return null;

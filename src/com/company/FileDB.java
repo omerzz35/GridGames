@@ -11,7 +11,7 @@ public class FileDB extends DB{
     private static FileDB single_instance = null;
     private File playersReader;
     private File gamesReader;
-    private Hashtable<String, Hashtable<String, Integer>> BestPlayers = new Hashtable<String, Hashtable<String, Integer>>();
+    private Hashtable<String, ArrayList<User>> BestPlayers = new Hashtable<String, ArrayList<User>>();
     private final List<String> games = new ArrayList<String>();
     private final String playerTxt = "best_players";
 
@@ -55,17 +55,19 @@ public class FileDB extends DB{
 
             while (reader.hasNextLine()) {
                 String game = reader.nextLine().toLowerCase();
-                this.BestPlayers.put(game, new Hashtable<String, Integer>());
-                Hashtable<String, Integer>map = this.BestPlayers.get(game);
+                this.BestPlayers.put(game, new ArrayList<User>());
+                ArrayList<User> current = this.BestPlayers.get(game);
                 String data = reader.nextLine();
                 if (data.equals("\n")){continue;}
                 while (!data.equals("=")) {
                     String[] tokens = data.split(" ");
-                    map.put(tokens[0], Integer.valueOf(tokens[1]));
+                    current.add(new User(tokens[0], Integer.parseInt(tokens[1])));
                     data = reader.nextLine();
                 }
+                this.BestPlayers.put(game, this.sortBestPlayers(this.BestPlayers.get(game)));
             }
             reader.close();
+
         }
         catch (IOException e)
         {
@@ -90,7 +92,7 @@ public class FileDB extends DB{
      * @param game the game we want best players
      * @return best players
      */
-    public Hashtable<String, Integer> getBestPlayers(String game)
+    public ArrayList<User> getBestPlayers(String game)
     {
         return this.BestPlayers.get(game);
     }
@@ -101,13 +103,18 @@ public class FileDB extends DB{
      * @param name the name of the player
      */
     public void addWin(String game, String name) {
-        Hashtable<String, Integer> map = this.BestPlayers.get(game);
-        if(this.BestPlayers.containsKey(name)){
-            map.put(name, map.get(name) + 1);
+        boolean modified = false;
+        ArrayList<User> bestplayers = this.BestPlayers.get(game);
+        for (int i = 0; i < bestplayers.size() - 1; i++){
+            if(bestplayers.get(i).getName().equals(name)){
+                bestplayers.get(i).setWins(bestplayers.get(i).getWins()+1);
+                modified = true;
+            }
         }
-        else{
-            map.put(name, 1);
+        if (!modified){
+            bestplayers.add(new User(name, 1));
         }
+        this.BestPlayers.put(game, bestplayers);
         this.writeDb();
     }
 
@@ -119,8 +126,9 @@ public class FileDB extends DB{
             FileWriter dbWriter = new FileWriter( this.playersReader, false);
             for (String game : this.BestPlayers.keySet()) {
                 dbWriter.write(game + "\n");
-                for (String player : this.BestPlayers.get(game).keySet()) {
-                    String toWrite = player + " " + this.BestPlayers.get(game).get(player).toString() + "\n";
+                ArrayList<User> bestplayers = this.BestPlayers.get(game);
+                for (int i = 0; i < bestplayers.size() - 1; i++){
+                    String toWrite = bestplayers.get(i).getName() + " " + bestplayers.get(i).getWins() + "\n";
                     dbWriter.write(toWrite);
                 }
                 dbWriter.write("=\n");
@@ -140,5 +148,23 @@ public class FileDB extends DB{
      */
     public List<String> getGames(){
         return this.games;
+    }
+
+    private ArrayList<User> sortBestPlayers(ArrayList<User> bestplayers){
+        boolean sorted = false;
+        int temp;
+        while(!sorted) {
+            sorted = true;
+            for (int i = 0; i < bestplayers.size() - 1; i++) {
+                User first = bestplayers.get(i);
+                User second = bestplayers.get(i+1);
+                if (first.getWins() < second.getWins()) {
+                    bestplayers.set(i, second);
+                    bestplayers.set(i+1, first);
+                    sorted = false;
+                }
+            }
+        }
+        return bestplayers;
     }
 }
