@@ -8,6 +8,7 @@ public class Boardgame {
     private Player players[];
     private IO io;
     private Board board;
+    private String currGame;
 
     /**
      * @param io - io
@@ -16,6 +17,7 @@ public class Boardgame {
      */
     public Boardgame(IO io,String nameOfGame)
     {
+        this.currGame = nameOfGame;
         this.io = io;
         GameFactory gf = new GameFactory();
         this.game = gf.getGame(nameOfGame ,io);

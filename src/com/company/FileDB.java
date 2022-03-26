@@ -93,7 +93,9 @@ public class FileDB extends DB{
      */
     public List<User> getBestPlayers(String game)
     {
-        return this.BestPlayers.get(game).subList(0, 5);
+        int size = this.BestPlayers.get(game).size();
+        if (size > 5) {size = 5; }
+        return this.BestPlayers.get(game).subList(0, size);
     }
 
     /**

@@ -11,12 +11,21 @@ public class GameRunner {
     private DB db;
     private String nameOfGame;
 
+    /**
+     * @param io - io
+     * @param gui - gui
+     * @param db - database
+     * constructor
+     */
     public GameRunner(IO io, GUI gui, DB db) {
         this.io = io;
         this.db = db;
         this.gui = gui;
     }
 
+    /**
+     * starts the game - choose witch game, after the game show top 5 leaderboard
+     */
     public void Start()
     {
         while (true)
@@ -63,10 +72,11 @@ public class GameRunner {
             }
             if (exit.equals("x")){return;}
         }
-
-
     }
 
+    /**
+     * runs the game we chose
+     */
     public void run()
     {
         bg.initialize(gui);
