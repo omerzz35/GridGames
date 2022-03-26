@@ -42,10 +42,10 @@ public class GameRunner {
             this.bg = new Boardgame(io,this.nameOfGame);
             gui.setCoordination(this.bg.shouldDrawCoordination());
             this.run();
-            io.write("top 5 Players: \n" + db.getBestPlayers(this.nameOfGame));
-//            for (String name : db.getBestPlayers(this.nameOfGame).keySet() ){
-//                io.write(name + " " + db.getBestPlayers(this.nameOfGame).get(name));
-//            }
+            io.write("Best players table:");
+            for (User user : db.getBestPlayers(this.nameOfGame)){
+                io.write(user.getName() + " has " + user.getWins() + " wins");
+            }
             try
             {
                 wait(5000);

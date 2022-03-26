@@ -14,7 +14,7 @@ public class DB {
         return null;
     }
 
-    public ArrayList<User> getBestPlayers(String game) {return null;}
+    public List<User> getBestPlayers(String game) {return null;}
 
     public static DB getInstance() {
         return null;

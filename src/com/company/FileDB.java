@@ -2,10 +2,7 @@ package com.company;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileDB extends DB{
     private static FileDB single_instance = null;
@@ -32,6 +29,7 @@ public class FileDB extends DB{
             }
         }
         this.readDb();
+        int a = 0;
     }
 
     /**
@@ -49,7 +47,7 @@ public class FileDB extends DB{
     /**
      * Read database and save informations locally
      */
-    public void readDb(){
+    private void readDb(){
         try {
             Scanner reader = new Scanner(this.playersReader);
 
@@ -61,7 +59,7 @@ public class FileDB extends DB{
                 if (data.equals("\n")){continue;}
                 while (!data.equals("=")) {
                     String[] tokens = data.split(" ");
-                    current.add(new User(tokens[0], Integer.parseInt(tokens[1])));
+                    current.add(new User(tokens[0].toUpperCase(), Integer.parseInt(tokens[1])));
                     data = reader.nextLine();
                 }
                 this.BestPlayers.put(game, this.sortBestPlayers(this.BestPlayers.get(game)));
@@ -79,6 +77,7 @@ public class FileDB extends DB{
             while (reader.hasNextLine()) {
                 String game = reader.nextLine();
                 this.games.add(game.toLowerCase());
+                this.BestPlayers.computeIfAbsent(game.toLowerCase(), k -> new ArrayList<User>());
             }
         }
         catch (IOException e)
@@ -92,9 +91,9 @@ public class FileDB extends DB{
      * @param game the game we want best players
      * @return best players
      */
-    public ArrayList<User> getBestPlayers(String game)
+    public List<User> getBestPlayers(String game)
     {
-        return this.BestPlayers.get(game);
+        return this.BestPlayers.get(game).subList(0, 5);
     }
 
     /**
@@ -106,16 +105,16 @@ public class FileDB extends DB{
         boolean modified = false;
         ArrayList<User> bestplayers = this.BestPlayers.get(game);
         //todo: if game is not initialize + name should be all caps
-        for (int i = 0; i < bestplayers.size() - 1; i++){
-            if(bestplayers.get(i).getName().equals(name)){
+        for (int i = 0; i < bestplayers.size(); i++){
+            if(bestplayers.get(i).getName().equals(name.toUpperCase())){
                 bestplayers.get(i).setWins(bestplayers.get(i).getWins()+1);
                 modified = true;
             }
         }
         if (!modified){
-            bestplayers.add(new User(name, 1));
+            bestplayers.add(new User(name.toUpperCase(), 1));
         }
-        this.BestPlayers.put(game, bestplayers);
+        this.BestPlayers.put(game, this.sortBestPlayers(this.BestPlayers.get(game)));
         this.writeDb();
     }
 
@@ -126,9 +125,9 @@ public class FileDB extends DB{
         try {
             FileWriter dbWriter = new FileWriter( this.playersReader, false);
             for (String game : this.BestPlayers.keySet()) {
-                dbWriter.write(game + "\n");
+                dbWriter.write(game.toLowerCase() + "\n");
                 ArrayList<User> bestplayers = this.BestPlayers.get(game);
-                for (int i = 0; i < bestplayers.size() - 1; i++){
+                for (int i = 0; i < bestplayers.size(); i++){
                     String toWrite = bestplayers.get(i).getName() + " " + bestplayers.get(i).getWins() + "\n";
                     dbWriter.write(toWrite);
                 }

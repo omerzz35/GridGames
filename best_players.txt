@@ -1,7 +1,10 @@
 chess
+EDEN 8
+EFRAT 6
+OMER 5
+RAPHAEL 3
+DANIEL 2
+YAEL 2
 =
 reversi
-Raphael 5
-Omer 3
-omer 1
 =
