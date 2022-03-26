@@ -139,7 +139,7 @@ public class Chess extends AbstractGame{
                 {
                     flag = true;
                 }
-                else if (src.length() == 0 || src.length() > 2)
+                else if (src.length() == 0 || src.length() == 1 || src.length() > 2)
                 {
                     continue;
                 }
@@ -162,7 +162,7 @@ public class Chess extends AbstractGame{
                 {
                     flag = true;
                 }
-                else if (dst.length() == 0 || dst.length() > 2)
+                else if (dst.length() == 0  || dst.length() == 1 || dst.length() > 2)
                 {
                     continue;
                 }
