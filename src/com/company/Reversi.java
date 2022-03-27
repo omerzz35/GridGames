@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Locale;
+
 public class Reversi extends AbstractGame {
     private static final String BLACK = "Black";
     private static final String WHITE = "White";
@@ -48,7 +50,6 @@ public class Reversi extends AbstractGame {
             for (int j = 0; j < sizeX; j++)
             {
                 if (state[i][j] != null) {
-                    // index = 0 if king's color is white, 1 if king's color is black
                     if (state[i][j].getColor().equals(WHITE))
                     {
                         whiteCounter++;
@@ -194,4 +195,34 @@ public class Reversi extends AbstractGame {
         return true;
     }
 
+    /**
+     * @param board - state of the board
+     * @return - the winner
+     */
+    public String announceWinner(Board board)
+    {
+        Piece[][] state = board.getState();
+        int sizeX = state[0].length;
+        int sizeY = state.length;
+        int blackCounter=0,whiteCounter=0;
+        for (int i = 0; i < sizeY; i++)
+        {
+            for (int j = 0; j < sizeX; j++)
+            {
+                if (state[i][j] != null) {
+                    if (state[i][j].getColor().equals(WHITE))
+                    {
+                        whiteCounter++;
+                    }
+                    else // black
+                    {
+                        blackCounter++;
+                    }
+                }
+            }
+        }
+        if (blackCounter > whiteCounter){return BLACK.toUpperCase();}
+        else if (blackCounter < whiteCounter){return WHITE.toUpperCase();}
+        else {return "DRAW";}
+    }
 }

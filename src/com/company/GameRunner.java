@@ -84,10 +84,18 @@ public class GameRunner {
             Player p = bg.getNextPlayer();
             p.makeMove(bg.getState());
         }
-        io.write(bg.announceWinner()+" won!");
-        io.write("enter your name: ");
-        String name = io.read();
-        db.addWin(this.nameOfGame, name);
+        String winner = bg.announceWinner();
+        if (winner.equals("DRAW"))
+        {
+            io.write("DRAW!!!");
+        }
+        else
+        {
+            io.write(winner +" won!");
+            io.write("enter your name: ");
+            String name = io.read();
+            db.addWin(this.nameOfGame, name);
+        }
     }
 
 }

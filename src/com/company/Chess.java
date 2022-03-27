@@ -112,7 +112,6 @@ public class Chess extends AbstractGame{
 
         // if one of the kings does not have any more move without being eaten the game is over
         return possibleMoves[0].isEmpty() || possibleMoves[1].isEmpty();
-
     }
 
 
@@ -218,5 +217,85 @@ public class Chess extends AbstractGame{
     @Override
     public boolean shouldSDrawCoordination() {
         return true;
+    }
+
+    /**
+     * @param board - state of the board
+     * @return - the winner
+     */
+    public String announceWinner(Board board)
+    {
+        Piece[] kings = new Piece[2];
+        Location[] kingsLoc = new Location[2];
+        ArrayList<Location>[] possibleMoves = new ArrayList[2];
+        ArrayList<Board>[] possibleBoards = new ArrayList[2];
+        Piece[][] state = board.getState().clone();
+        List<Piece> pieceList = new ArrayList<Piece>();
+        List<Location> pieceLocations = new ArrayList<Location>();
+
+        // iterating over the board to get all pieces locations
+        int size = state[0].length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (state[i][j] instanceof King) {
+                    // index = 0 if king's color is white, 1 if king's color is black
+                    int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
+                    kings[index] = state[i][j];
+                    kingsLoc[index] = new Location(j, i);
+                } else if (state[i][j] != null) { //if there is a piece saving it
+                    pieceList.add(state[i][j]);
+                    pieceLocations.add(new Location(j, i));
+                }
+
+            }
+        }
+
+        // for each king, establishing all his potential moves (including actual state). NOT USING IS_LEGAL_MOVE
+        // METHOD because it will cause infinite loop
+        for (int idx = 0; idx < 2; idx++) {
+            String color = (idx == 0) ? WHITE : BLACK;
+            possibleMoves[idx] = new ArrayList<Location>(); //for each king possible move
+            possibleBoards[idx] = new ArrayList<Board>(); //for each king state of possible move
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    int dstX = kingsLoc[idx].getX() + j;
+                    int dstY = kingsLoc[idx].getY() + i;
+                    if (dstX >= 0 && dstY >= 0 && dstX < size && dstY < size) {
+                        if (state[dstY][dstX] != null && state[dstY][dstX].getColor().equals(color)) {
+                            if (i != 0 || j != 0){
+                                continue;
+                            }
+                        }
+                        possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
+                        // we also need a temporary state with potential new state after move
+                        Piece[][] tmpState = state.clone();
+                        tmpState[kingsLoc[idx].getY()][kingsLoc[idx].getX()] = null;
+                        tmpState[dstY][dstX] = kings[idx];
+                        possibleBoards[idx].add(new Board(tmpState)); // adding potential state to possible boards
+                    }
+                }
+            }
+        }
+
+        // for all possible move of the king (including actual state) we are checking if an enemy can eat it.
+        for (int i = 0; i < pieceList.size(); i++) {
+            Piece piece = pieceList.get(i);
+            // if the color is white we want to check black king possible moves, same in reverse case
+            int color = (piece.getColor().equals(WHITE)) ? 1 : 0;
+            for (int j = 0 ; j < possibleMoves[color].size() ; j++) {
+                Board potential = possibleBoards[color].get(j);
+                Location loc = possibleMoves[color].get(j);
+                if (piece.isLegalMove(new Locations(pieceLocations.get(i), loc), potential, true)) {
+                    // if the piece can eat our king after it's potential move, this move is no more an option
+                    possibleMoves[color].remove(loc);
+                }
+            }
+        }
+
+        // if one of the kings does not have any more move without being eaten the game is over
+        // index = 0 if king's color is white, 1 if king's color is black
+        if (possibleMoves[0].isEmpty() && !possibleMoves[1].isEmpty()){return BLACK.toUpperCase();}
+        else if (!possibleMoves[0].isEmpty() && possibleMoves[1].isEmpty()){return WHITE.toUpperCase();}
+        else {return "DRAW";}
     }
 }

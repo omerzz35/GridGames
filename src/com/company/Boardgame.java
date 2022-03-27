@@ -92,7 +92,8 @@ public class Boardgame {
      */
     public String announceWinner()
     {
-        return this.players[turn].getColor();
+        return game.announceWinner(this.getState());
+        //return this.players[turn].getColor();
     }
 
     /**

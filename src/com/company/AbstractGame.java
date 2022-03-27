@@ -39,5 +39,11 @@ public abstract class AbstractGame implements Rules{
      * @return should draw the coordination (like 12... and ab...)
      */
     public abstract boolean shouldSDrawCoordination();
+
+    /**
+     * @param board - state of the board
+     * @return - the winner
+     */
+    public abstract String announceWinner(Board board);
 }
 

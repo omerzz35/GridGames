@@ -7,6 +7,6 @@ DANIEL 2
 YAEL 2
 =
 reversi
-OMER 3
+OMER 4
 TEST 1
 =
