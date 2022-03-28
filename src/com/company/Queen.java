@@ -22,22 +22,24 @@ public class Queen extends Piece{
         Location dst = loc.getDst();
         int j = src.getX();
         int i = src.getY();
-        int x = dst.getX() - src.getX();
-        int y = dst.getY() - src.getY();
+        int dx = dst.getX() - src.getX();
+        int dy = dst.getY() - src.getY();
 
         // check if legal move
-        if (!((Math.abs(x) == Math.abs(y)) || (x == 0 || y == 0))) { //diagonal (x == y) , vertical or horizontal (x == 0 || y == 0 )
+        if (!((Math.abs(dx) == Math.abs(dy)) || (dx == 0 || dy == 0))) { //diagonal (dx == dy) , vertical or horizontal (dx == 0 || dy == 0 )
             return false;
         }
 
         // check if queen did not "jump" over any piece on the board
-        int iter = Math.max(Math.abs(x),Math.abs(y)) - 1; // last square can be with piece (-1)
-        if (x != 0) {x /= Math.abs(x);} // 0, 1 or -1
-        if (y != 0) {y /= Math.abs(y);} // 0, 1 or -1
+        int iter = Math.max(Math.abs(dx),Math.abs(dy)) - 1; // last square can be with piece (-1)
+        if (dx != 0) {
+            dx /= Math.abs(dx);} // 0, 1 or -1
+        if (dy != 0) {
+            dy /= Math.abs(dy);} // 0, 1 or -1
         for (int t = 0; t < iter; t++)
         {
-            i += y;
-            j += x;
+            i += dy;
+            j += dx;
             if(state.getState()[i][j] != null) { return false; }
         }
 

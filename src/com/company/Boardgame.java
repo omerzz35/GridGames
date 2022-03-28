@@ -19,8 +19,8 @@ public class Boardgame {
     {
         this.currGame = nameOfGame;
         this.io = io;
-        GameFactory gf = new GameFactory();
-        this.game = gf.getGame(nameOfGame ,io);
+        //GameFactory gf = new GameFactory();
+        this.game = GameFactory.getGame(nameOfGame ,io);
     }
 
     /**

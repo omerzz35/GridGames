@@ -1,8 +1,5 @@
 package com.company;
 
-import javax.print.attribute.standard.PrinterMakeAndModel;
-import java.util.function.Function;
-
 public abstract class Player {
     protected Rules gameRules;
     protected String color;
@@ -34,7 +31,7 @@ public abstract class Player {
             }
             if (!move.hasMoreMoves()) {break;} // if rules(loc) == true break else one more turn
         }
-        state.exe(move);
+        state.playMove(move);
     }
 
     public abstract String howToMove(Board state);

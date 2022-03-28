@@ -7,13 +7,14 @@ import java.util.Scanner;
 
 public class ConsoleGUI extends GUI {
     private Hashtable<String, String> piecesToIcon = new Hashtable<String, String>();
-    private File piecesToIconFile = new File("piecesToIcon.txt");
+    private File piecesToIconFile;// = new File("piecesToIcon.txt");
 
     /**
      * makes the console gui
      * constructor
      */
-    public ConsoleGUI() {
+    public ConsoleGUI(String piecesToIconFileName) {
+        this.piecesToIconFile = new File(piecesToIconFileName);
         this.piecesToIcon = new Hashtable<String, String>();
 
         try {
@@ -44,9 +45,7 @@ public class ConsoleGUI extends GUI {
     public void draw(Piece[][] board) {
         this.board = board;
         if (drawCoordination) {
-            for (int i = 0; i < board.length; i++) {
-                System.out.print("(#" + (i + 1) + ")"); //todo: check if it should be io....
-            }
+            this.DrawBorder();
         }
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -67,6 +66,13 @@ public class ConsoleGUI extends GUI {
             }
         }
         System.out.println();
+    }
+
+    private void DrawBorder()
+    {
+        for (int i = 0; i < board.length; i++) {
+            System.out.print("(#" + (i + 1) + ")");
+        }
     }
 }
 

@@ -36,7 +36,7 @@ public class Board implements Observable{
      * @param move - contains the data to execute the move
      * execute the move (update the board and notify the gui)
      */
-    public void exe(Move move) {
+    public void playMove(Move move) {
         List<PieceWithLocation> piecesKilled =  move.getPiecesKilled();
         List<PieceWithLocations> piecesMoved = move.getPiecesMoved();
         List<PieceWithLocation> piecesAdded = move.getPiecesAdded();

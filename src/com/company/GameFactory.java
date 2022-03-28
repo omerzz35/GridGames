@@ -23,6 +23,7 @@ public class GameFactory {
             case "reversi":
                 return new Reversi(io);
             default:
+                //return new Exception("The game does not exist");
                 return null;
 
         }

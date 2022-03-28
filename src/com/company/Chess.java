@@ -26,9 +26,9 @@ public class Chess extends AbstractGame{
     {
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
+                {null,null,null,null,new Rook(BLACK),null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {null,null,null,null,null,null,null,null},
-                {null,null,null,null,null,null,null,null},
+                {null,null,new Bishop(WHITE),null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
@@ -130,7 +130,7 @@ public class Chess extends AbstractGame{
                 this.io.write("Player " + color);
                 this.io.write("Select source square");
                 src = io.read().toLowerCase();
-                if (src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) {
+                if (isInputValid(src)){//(src.length() == 2 && !((src.charAt(0) >= 'a' && src.charAt(0) <= 'h') && (src.charAt(1) >= '1' && src.charAt(1) <= '8'))) {
                     this.io.write("Illegal input - try again");
                     continue;
                 }
@@ -153,7 +153,7 @@ public class Chess extends AbstractGame{
             {
                 this.io.write("Select destination square");
                 dst = io.read().toLowerCase();
-                if (dst.length() == 2 && !((dst.charAt(0) >= 'a' && dst.charAt(0) <= 'h') && (dst.charAt(1) >= '1' && dst.charAt(1) <= '8'))) {
+                if (isInputValid(dst)){ //dst.length() == 2 && !((dst.charAt(0) >= 'a' && dst.charAt(0) <= 'h') && (dst.charAt(1) >= '1' && dst.charAt(1) <= '8'))) {
                     this.io.write("Illegal input - try again");
                     continue;
                 }
@@ -297,5 +297,10 @@ public class Chess extends AbstractGame{
         if (possibleMoves[0].isEmpty() && !possibleMoves[1].isEmpty()){return BLACK.toUpperCase();}
         else if (!possibleMoves[0].isEmpty() && possibleMoves[1].isEmpty()){return WHITE.toUpperCase();}
         else {return "DRAW";}
+    }
+
+    private boolean isInputValid(String input)
+    {
+        return (input.length() == 2 && !((input.charAt(0) >= 'a' && input.charAt(0) <= 'h') && (input.charAt(1) >= '1' && input.charAt(1) <= '8')));
     }
 }
