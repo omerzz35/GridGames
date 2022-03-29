@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Board implements Observable{
@@ -91,4 +92,11 @@ public class Board implements Observable{
         observers.remove(observer);
     }
 
+    public Piece[][] deepCopyState() {
+        Piece[][] stateCopy = new Piece[this.board.length][];
+        for (int i = 0 ; i <  this.board.length ; i++){
+            stateCopy[i] = Arrays.copyOf(this.board[i], this.board[i].length);
+        }
+        return stateCopy;
+    }
 }

@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 public class Chess extends AbstractGame{
@@ -26,11 +25,11 @@ public class Chess extends AbstractGame{
     {
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
-                {null,null,null,null,new Rook(BLACK),null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {null,null,new Bishop(WHITE),null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
-                {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
+                {null,null,null,null,null,null,null,null},
+                {null,null,null,null,null,null,null,null},
+                {new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE),null,new Pawn(WHITE),new Pawn(WHITE),new Pawn(WHITE)},
                 {new Rook(WHITE),new Knight(WHITE),new Bishop(WHITE),new Queen(WHITE),new King(WHITE),new Bishop(WHITE),new Knight(WHITE),new Rook(WHITE)}};
         String colors[] = new String[2];
         colors[0] = WHITE;
@@ -47,21 +46,21 @@ public class Chess extends AbstractGame{
         Location[] kingsLoc = new Location[2];
         ArrayList<Location>[] possibleMoves = new ArrayList[2];
         ArrayList<Board>[] possibleBoards = new ArrayList[2];
-        Piece[][] state = board.getState().clone();
+        Piece[][] tmp_state = board.deepCopyState();
         List<Piece> pieceList = new ArrayList<Piece>();
         List<Location> pieceLocations = new ArrayList<Location>();
 
         // iterating over the board to get all pieces locations
-        int size = state[0].length;
+        int size = tmp_state[0].length;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (state[i][j] instanceof King) {
+                if (tmp_state[i][j] instanceof King) {
                     // index = 0 if king's color is white, 1 if king's color is black
-                    int index = state[i][j].getColor().equals(WHITE) ? 0 : 1;
-                    kings[index] = state[i][j];
+                    int index = tmp_state[i][j].getColor().equals(WHITE) ? 0 : 1;
+                    kings[index] = tmp_state[i][j];
                     kingsLoc[index] = new Location(j, i);
-                } else if (state[i][j] != null) { //if there is a piece saving it
-                    pieceList.add(state[i][j]);
+                } else if (tmp_state[i][j] != null) { //if there is a piece saving it
+                    pieceList.add(tmp_state[i][j]);
                     pieceLocations.add(new Location(j, i));
                 }
 
@@ -79,14 +78,14 @@ public class Chess extends AbstractGame{
                     int dstX = kingsLoc[idx].getX() + j;
                     int dstY = kingsLoc[idx].getY() + i;
                     if (dstX >= 0 && dstY >= 0 && dstX < size && dstY < size) {
-                        if (state[dstY][dstX] != null && state[dstY][dstX].getColor().equals(color)) {
+                        if (tmp_state[dstY][dstX] != null && tmp_state[dstY][dstX].getColor().equals(color)) {
                             if (i != 0 || j != 0){
                                 continue;
                             }
                         }
                         possibleMoves[idx].add(new Location(dstX, dstY)); // adding new possible location to list
                         // we also need a temporary state with potential new state after move
-                        Piece[][] tmpState = state.clone();
+                        Piece[][] tmpState = tmp_state.clone();
                         tmpState[kingsLoc[idx].getY()][kingsLoc[idx].getX()] = null;
                         tmpState[dstY][dstX] = kings[idx];
                         possibleBoards[idx].add(new Board(tmpState)); // adding potential state to possible boards

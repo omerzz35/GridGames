@@ -8,15 +8,15 @@ public interface Observable {
     void addObserver(Observer observer);
 
     /**
+     * notify all observers
+     */
+    void notifyObservers();
+
+    /**
      * @param observer - observer
      * remove observer from observers
      */
     void removeObserver(Observer observer);
-
-    /**
-     * notify all observers
-     */
-    void notifyObservers();
 
     /**
      * @param boardString
