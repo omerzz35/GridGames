@@ -41,7 +41,10 @@ public class Pawn extends Piece{
                  }
                  if (Math.abs(dy) == 1 && Math.abs(dx) == 1 &&
                          !this.color.equals(state.getState()[dst.getY()][dst.getX()].getColor())) {
-                     return (this.color.equals("White") && dy < 0) || (this.color.equals("Black") && dy > 0);
+                     if((this.color.equals("White") && dy < 0) || (this.color.equals("Black") && dy > 0)){
+                         this.isFirstMove = false;
+                         return true;
+                     }
                  }
              return false;
              }

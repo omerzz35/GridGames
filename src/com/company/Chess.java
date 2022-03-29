@@ -25,7 +25,7 @@ public class Chess extends AbstractGame{
     {
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
-                {null,null,null,null,null,null,null,null},
+                {new Pawn(WHITE),null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
                 {null,null,null,null,null,null,null,null},
