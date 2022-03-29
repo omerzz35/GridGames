@@ -21,8 +21,7 @@ public class Chess extends AbstractGame{
      * @return BoardAndColors the initialized board and the colors of the
      * players (number of players according to the size of the array)
      */
-    public BoardAndColors initialize()
-    {
+    public BoardAndColors initialize() {
         Piece board[][] = {{new Rook(BLACK),new Knight(BLACK),new Bishop(BLACK),new Queen(BLACK),new King(BLACK),new Bishop(BLACK),new Knight(BLACK),new Rook(BLACK)},
                 {new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK),new Pawn(BLACK)},
                 {null,null,null,null,null,null,null,null},
