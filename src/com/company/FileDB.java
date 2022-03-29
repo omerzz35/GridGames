@@ -5,7 +5,46 @@ import java.io.IOException;
 import java.util.*;
 
 public class FileDB extends DB{
-    private static FileDB single_instance = null;
+//    private static FileDB single_instance = null;
+//    private File playersReader;
+//    private File gamesReader;
+//    private Hashtable<String, ArrayList<User>> BestPlayers = new Hashtable<String, ArrayList<User>>();
+//    private final List<String> games = new ArrayList<String>();
+//    private final String playerTxt = "best_players";
+//
+//    /**
+//     * private constructor of singleton
+//     */
+//    private FileDB() {
+//        this.playersReader = new File(this.playerTxt + ".txt");
+//        this.gamesReader = new File("games.txt");
+//        if (!this.playersReader.exists()){
+//            try
+//            {
+//                this.playersReader.createNewFile(); // = File.createTempFile(this.playerTxt, ".txt");
+//            }
+//            catch (IOException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
+//        this.readDb();
+//        int a = 0;
+//    }
+//
+//    /**
+//     * @return the single instance of file db
+//     */
+//    // Static method to create instance of Singleton class
+//    public static DB getInstance()
+//    {
+//        if (single_instance == null) {
+//            single_instance = new FileDB();
+//        }
+//        return single_instance;
+//    }
+
+    private static volatile DB single_instance = null;
     private File playersReader;
     private File gamesReader;
     private Hashtable<String, ArrayList<User>> BestPlayers = new Hashtable<String, ArrayList<User>>();
@@ -38,11 +77,20 @@ public class FileDB extends DB{
     // Static method to create instance of Singleton class
     public static DB getInstance()
     {
+        DB result = single_instance;
         if (single_instance == null) {
-            single_instance = new FileDB();
+            synchronized (FileDB.class)
+            {
+                result = single_instance;
+                if (result == null)
+                {
+                    single_instance = result = new FileDB();
+                }
+            }
         }
-        return single_instance;
+        return result;
     }
+
 
     /**
      * Read database and save informations locally
