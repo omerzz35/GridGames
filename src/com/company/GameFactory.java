@@ -24,7 +24,7 @@ public class GameFactory {
                 return new Reversi(io);
             default:
                 //return new Exception("The game does not exist");
-                return null;
+                throw new IllegalArgumentException("Not existing game");
 
         }
     }
